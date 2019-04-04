@@ -15,6 +15,9 @@
 - Deakin requires a minimum of 10-14 hours per week, per unit. Please work more days (and say which day)
 
 # Week 5
+4/04/2019 
+implemented video background on intro page
+
 
 ## Wednesday 3/April [Henry]
 - Update this file each day you work
