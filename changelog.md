@@ -1,14 +1,14 @@
 # Week 3
 ## Date?
-- added activities
-- created project
-- begun work on graphics
+* added activities
+* created project
+* begun work on graphics
 
 
 # Week 4
 ## Date?
-- completed icons
-- completed splash screen graphic
+* completed icons
+* completed splash screen graphic
 
 ## Henry notes
 - Missing significant progress recently.
@@ -16,8 +16,15 @@
 
 # Week 5
 4/04/2019 
-implemented video background on intro page
+* implemented video background on intro page (place holder background)
+* set out initial layouts
+* naming conventions applied
 
+5/04/2019 
+
+6/04/2019 
+
+7/04/2019 
 
 ## Wednesday 3/April [Henry]
 - Update this file each day you work
