@@ -17,10 +17,13 @@
 # Week 5
 4/04/2019 
 * implemented video background on intro page (place holder background)
-* set out initial layouts
-* naming conventions applied
+* set out initial layouts for all features
+* naming conventions applied to activities, classes, layouts
 
 5/04/2019 
+* layouts for the activities for one of the main features are now developed, can be used to test functionalities with the account system
+* user object is now created, contains attributes listed in the project proposal
+* splash screen is now active, current graphic needs to be replaced
 
 6/04/2019 
 
