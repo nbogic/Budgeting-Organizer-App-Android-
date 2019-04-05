@@ -8,11 +8,17 @@ import android.widget.VideoView;
 
 public class activity_intro extends AppCompatActivity {
     VideoView background_intro_video;
+    private static int time = 2000;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_intro);
+
+        /*allows video capability for the background of the intro layout to be displayed with a personalised video
+        the background loops and resumes when the user returns to the activity
+         */
 
         background_intro_video = (VideoView) findViewById(R.id.videoView);
         Uri uri = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.placeholder_background);
