@@ -22,7 +22,7 @@
 
 5/04/2019 
 * layouts for the activities for one of the main features is now developed, can be used to test account system functionalities
-* user object is now created, contains attributes listed in the project proposal
+* user object is now created, contains attributes as discussed in the project proposal
 * splash screen is now active, current graphic needs to be replaced
 
 6/04/2019 
