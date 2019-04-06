@@ -21,11 +21,14 @@
 * naming conventions applied to activities, classes, layouts
 
 5/04/2019 
-* layouts for the activities for one of the main features are now developed, can be used to test functionalities with the account system
+* layouts for the activities for one of the main features is now developed, can be used to test account system functionalities
 * user object is now created, contains attributes listed in the project proposal
 * splash screen is now active, current graphic needs to be replaced
 
 6/04/2019 
+* buttons now functional (all features): transitions the screen to the respective activity
+* layouts complete for all other features
+* remaining classes made (budget, expenses, accounts)
 
 7/04/2019 
 
