@@ -26,9 +26,9 @@
 * splash screen is now active, current graphic needs to be replaced
 
 6/04/2019 
-* buttons now functional (all features): transitions the screen to the respective activity
-* layouts complete for all other features
-* remaining classes made (budget, expenses, accounts)
+* buttons now functional (all features): transitions the screen to the targeted/relevant activity
+* layouts complete for all other features (can now be used to test feature implementations)
+* remaining classes set up (budget, expenses, accounts)
 
 7/04/2019 
 
