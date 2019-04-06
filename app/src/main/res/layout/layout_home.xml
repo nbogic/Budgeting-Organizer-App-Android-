@@ -50,7 +50,7 @@
         app:layout_constraintVertical_bias="1.0">
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/home"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_weight="1"
@@ -58,21 +58,21 @@
             tools:text="HOME" />
 
         <Button
-            android:id="@+id/button8"
+            android:id="@+id/home_expenses"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_weight="1"
             android:text="EXPENSES" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/home_accounts"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_weight="1"
             android:text="ACCOUNTS" />
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/home_budget"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_weight="1"

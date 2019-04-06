@@ -3,35 +3,34 @@ package com.example.budgetplanner;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Layout;
 import android.view.View;
 import android.widget.Button;
 
-public class activity_home extends AppCompatActivity implements View.OnClickListener {
+public class activity_home_expenses extends AppCompatActivity implements View.OnClickListener {
 
-    //home layout buttons
-    private Button home;
-    private Button home_expenses;
-    private Button home_accounts;
-    private Button home_budget;
+    //expenses layout buttons
+    private Button expenses_home;
+    private Button expenses;
+    private Button expenses_accounts;
+    private Button expenses_budget;
 
     @Override
     public void onClick(View view) {
         Intent intent;
         switch (view.getId()) {
-            case R.id.home:
+            case R.id.expenses_home:
                 intent = new Intent(this, activity_home.class);
                 startActivity(intent);
                 break;
-            case R.id.home_expenses:
+            case R.id.expenses:
                 intent = new Intent(this, activity_home_expenses.class);
                 startActivity(intent);
                 break;
-            case R.id.home_accounts:
+            case R.id.expenses_accounts:
                 intent = new Intent(this, activity_home_accounts.class);
                 startActivity(intent);
                 break;
-            case R.id.home_budget:
+            case R.id.expenses_budget:
                 intent = new Intent(this, activity_home_budget.class);
                 startActivity(intent);
                 break;
@@ -44,22 +43,18 @@ public class activity_home extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.layout_home);
+        setContentView(R.layout.layout_home_expenses);
 
-        //linking buttons to their respective ids
-        home = (Button) findViewById(R.id.home);
-        home.setOnClickListener(this);
+        expenses_home = (Button) findViewById(R.id.expenses_home);
+        expenses_home.setOnClickListener(this);
 
-        home_expenses = (Button) findViewById(R.id.home_expenses);
-        home.setOnClickListener(this);
+        expenses = (Button) findViewById(R.id.expenses);
+        expenses.setOnClickListener(this);
 
-        home_accounts = (Button) findViewById(R.id.home_accounts);
-        home.setOnClickListener(this);
+        expenses_accounts = (Button) findViewById(R.id.expenses_accounts);
+        expenses_accounts.setOnClickListener(this);
 
-        home_budget = (Button) findViewById(R.id.home_budget);
-        home.setOnClickListener(this);
-
-
-
+        expenses_budget = (Button) findViewById(R.id.expenses_budget);
+        expenses_budget.setOnClickListener(this);
     }
 }
