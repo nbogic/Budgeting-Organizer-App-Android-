@@ -39,9 +39,7 @@ public class activity_intro extends AppCompatActivity  implements View.OnClickLi
                 startActivity(intent);
                 break;
         }
-
-        //testing
-        System.out.println("Id" + view.getId());
+        System.out.println("Saturday" + view.getId());
     }
 
     @Override
@@ -49,7 +47,6 @@ public class activity_intro extends AppCompatActivity  implements View.OnClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_intro);
 
-        //linking buttons to their respective ids
         intro_sign_in = (Button) findViewById(R.id.sign_in);
         intro_sign_in.setOnClickListener(this);
 

@@ -40,7 +40,6 @@ public class activity_home_budget extends AppCompatActivity implements View.OnCl
         System.out.println("Id" + view.getId());
     }
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

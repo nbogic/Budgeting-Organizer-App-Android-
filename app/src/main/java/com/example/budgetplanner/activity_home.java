@@ -37,8 +37,11 @@ public class activity_home extends AppCompatActivity implements View.OnClickList
                 break;
         }
 
+        intent = new Intent(this, activity_home_budget.class);
+        startActivity(intent);
+
         //testing
-        System.out.println("Id" + view.getId());
+        System.out.println("Id TESTESTSTSETSET" + view.getId());
     }
 
     @Override
