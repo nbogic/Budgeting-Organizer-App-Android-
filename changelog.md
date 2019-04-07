@@ -37,3 +37,11 @@
 ## Wednesday 3/April [Henry]
 - Update this file each day you work
 - Include multi-line comments (/* comment here */) before each function, outlining what the function does, and how to call it, and what to do with what it returns.
+
+# Week 6
+
+## Monday 8/April [Henry]
+- Good to see more progress, I like it.
+- Classes need to start with a capital letter, and their filenames (standard practice for programming)
+
+
