@@ -4,7 +4,7 @@ public class class_user {
 
     private String user_name;
     protected String password;
-    private Integer pin_code;
+    private String pin_code;
 
     //budget class declaration here
     //account class declaration here
@@ -15,7 +15,7 @@ public class class_user {
     private String last_name;
     private String email;
 
-    public class_user(String user_name, String password, Integer pin_code, Boolean status, String first_name, String last_name, String email) {
+    public class_user(String user_name, String password, String pin_code, Boolean status, String first_name, String last_name, String email) {
         user_name = user_name;
         password = password;
         pin_code = pin_code;

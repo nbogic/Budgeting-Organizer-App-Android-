@@ -87,7 +87,7 @@
             android:textColor="@color/colorAccent" />
 
         <EditText
-            android:id="@+id/editText2"
+            android:id="@+id/edit_intro_firstname"
             android:layout_width="match_parent"
             android:layout_height="23dp"
             android:ems="10"
@@ -102,7 +102,7 @@
             android:textColor="@color/colorAccent" />
 
         <EditText
-            android:id="@+id/editText4"
+            android:id="@+id/edit_intro_lastname"
             android:layout_width="match_parent"
             android:layout_height="23dp"
             android:ems="10"
@@ -116,7 +116,7 @@
             android:textColor="@color/colorAccent" />
 
         <EditText
-            android:id="@+id/editText5"
+            android:id="@+id/edit_intro_pin"
             android:layout_width="match_parent"
             android:layout_height="23dp"
             android:ems="10"

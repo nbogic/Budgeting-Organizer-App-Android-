@@ -73,7 +73,7 @@
             android:textColor="@color/colorAccent" />
 
         <EditText
-            android:id="@+id/editText2"
+            android:id="@+id/edit_intro_username"
             android:layout_width="match_parent"
             android:layout_height="23dp"
             android:ems="10"
@@ -88,7 +88,7 @@
             android:textColor="@color/colorAccent" />
 
         <EditText
-            android:id="@+id/editText4"
+            android:id="@+id/edit_intro_password"
             android:layout_width="match_parent"
             android:layout_height="23dp"
             android:ems="10"
@@ -102,7 +102,7 @@
             android:textColor="@color/colorAccent" />
 
         <EditText
-            android:id="@+id/editText5"
+            android:id="@+id/edit_intro_password2"
             android:layout_width="match_parent"
             android:layout_height="23dp"
             android:ems="10"
@@ -116,7 +116,7 @@
             android:textColor="@color/colorAccent" />
 
         <EditText
-            android:id="@+id/editText6"
+            android:id="@+id/edit_intro_email"
             android:layout_width="match_parent"
             android:layout_height="23dp"
             android:ems="10"
@@ -171,4 +171,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
         app:layout_constraintVertical_bias="0.023" />
+
 </android.support.constraint.ConstraintLayout>

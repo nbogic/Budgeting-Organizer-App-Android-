@@ -228,6 +228,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_weight="1"
+            android:onClick="onClick"
             android:text="HOME" />
 
         <Button
@@ -235,6 +236,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_weight="1"
+            android:onClick="onClick"
             android:text="EXPENSES" />
 
         <Button
@@ -242,6 +244,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_weight="1"
+            android:onClick="onClick"
             android:text="ACCOUNTS" />
 
         <Button
@@ -249,6 +252,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_weight="1"
+            android:onClick="onClick"
             android:text="BUDGET" />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
