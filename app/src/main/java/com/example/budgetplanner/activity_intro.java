@@ -38,6 +38,7 @@ public class activity_intro extends AppCompatActivity  implements View.OnClickLi
                 intent = new Intent(this, activity_home.class);
                 startActivity(intent);
                 break;
+
         }
         System.out.println("Saturday" + view.getId());
     }
@@ -55,6 +56,8 @@ public class activity_intro extends AppCompatActivity  implements View.OnClickLi
 
         intro_guest = (Button) findViewById(R.id.guest);
         intro_guest.setOnClickListener(this);
+
+
 
         /*allows video capability for the background of the intro layout to be displayed with a personalised video
         the background loops and resumes when the user returns to the activity

@@ -7,22 +7,36 @@
     android:background="@drawable/background_intro_temporary"
     tools:context=".activity_account_create" >
 
+    <Button
+        android:id="@+id/intro_back"
+        android:layout_width="69dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:onClick="onClick"
+        android:text="BACK"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.251"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+        app:layout_constraintVertical_bias="0.0" />
+
     <TextView
         android:id="@+id/textView12"
         android:layout_width="66dp"
         android:layout_height="30dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:text="Step 1"
+        android:text="Step 2"
         android:textColor="@color/colorAccent"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.973" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -51,7 +65,7 @@
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="224dp"
-        android:layout_height="249dp"
+        android:layout_height="217dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
@@ -69,7 +83,7 @@
             android:id="@+id/textView3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Username"
+            android:text="First Name"
             android:textColor="@color/colorAccent" />
 
         <EditText
@@ -84,7 +98,7 @@
             android:id="@+id/textView5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Password"
+            android:text="Last Name"
             android:textColor="@color/colorAccent" />
 
         <EditText
@@ -98,7 +112,7 @@
             android:id="@+id/textView8"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Confirm Password"
+            android:text="Pin Number"
             android:textColor="@color/colorAccent" />
 
         <EditText
@@ -107,21 +121,6 @@
             android:layout_height="23dp"
             android:ems="10"
             android:inputType="textPassword" />
-
-        <TextView
-            android:id="@+id/textView9"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Email"
-            android:textColor="@color/colorAccent" />
-
-        <EditText
-            android:id="@+id/editText6"
-            android:layout_width="match_parent"
-            android:layout_height="23dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Name" />
 
         <LinearLayout
             android:layout_width="match_parent"
