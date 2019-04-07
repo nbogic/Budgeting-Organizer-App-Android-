@@ -31,6 +31,8 @@
 * remaining classes set up (budget, expenses, accounts)
 
 7/04/2019 
+* users can now create accounts (edit texts are now saved and imported into a user class)
+* initial validation available, needs to be extended upon
 
 ## Wednesday 3/April [Henry]
 - Update this file each day you work
