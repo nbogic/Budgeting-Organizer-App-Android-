@@ -1,12 +1,12 @@
 # Week 3
-## Date?
+19/04/2019
 * added activities
 * created project
 * begun work on graphics
 
 
 # Week 4
-## Date?
+27/04/2019
 * completed icons
 * completed splash screen graphic
 
