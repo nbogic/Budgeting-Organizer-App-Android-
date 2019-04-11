@@ -44,4 +44,7 @@
 - Good to see more progress, I like it.
 - Classes need to start with a capital letter, and their filenames (standard practice for programming)
 
+## Monday 11/April [Henry]
+- Repeating last comments.
+
 
