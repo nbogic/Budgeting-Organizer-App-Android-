@@ -1,4 +1,4 @@
 package com.example.budgetplanner;
 
-public class class_budget {
+public class Budget {
 }

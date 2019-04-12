@@ -1,5 +1,4 @@
 package com.example.budgetplanner;
 
-public class class_accounts {
-
+public class Expenses {
 }

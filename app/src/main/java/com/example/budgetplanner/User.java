@@ -1,6 +1,6 @@
 package com.example.budgetplanner;
 
-public class class_user {
+public class User {
 
     private String user_name;
     protected String password;
@@ -15,7 +15,7 @@ public class class_user {
     private String last_name;
     private String email;
 
-    public class_user(String user_name, String password, String pin_code, Boolean status, String first_name, String last_name, String email) {
+    public User(String user_name, String password, String pin_code, Boolean status, String first_name, String last_name, String email) {
         user_name = user_name;
         password = password;
         pin_code = pin_code;
@@ -26,12 +26,12 @@ public class class_user {
 
     }
 
-    public class_user(String first_name, String last_name, String pin_code) {
+    public User(String first_name, String last_name, String pin_code) {
         /*offline user*/
 
     }
 
-    public class_user() {
+    public User() {
         /*testing purposes*/
     }
 
