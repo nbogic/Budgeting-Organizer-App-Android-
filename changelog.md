@@ -48,6 +48,9 @@
 - Repeating last comments.
 
 12/04/2019
+* changed class names to the appropriate naming conventions
+* allowed for information between layout changes to be retained (username, pword, email - saved in variables)
+* changed several functions to return a boolean value
 
 13/04/2019
 
