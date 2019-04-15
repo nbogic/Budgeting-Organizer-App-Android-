@@ -62,6 +62,11 @@ public class activity_account_create extends AppCompatActivity implements View.O
         System.out.println("Saturday" + view.getId());
     }
 
+    /* this function is used to create the user's account using the inputted text, it is called once the 'create' button is pressed
+    as there lies an issue with multiple layouts for one activity, the second layout for the remaining information is inflated
+    to capture current information, the edit texts are assigned in this function
+    before the function can return a TRUE value, the validation function must also return TRUE
+    if the function returns FALSE, then a error message will be thrown out to alert the user */
     public Boolean intro_account_create() {
         //get the current values in the edit texts
         EditText intro_username = (EditText) findViewById(R.id.edit_intro_username);
@@ -95,6 +100,10 @@ public class activity_account_create extends AppCompatActivity implements View.O
          } else { System.out.println("ERROR!"); return false; }
     }
 
+    /* this function is intended to validate a set of strings and return a boolean value based on result given
+    parameters: generics
+    if a string contains no characters or is of a null value, the function will return FALSE
+    if this is not the case, then a TRUE value will be returned */
     public Boolean intro_account_validate(String s1, String s2, String s3, String s4, String s5, String s6) {
         //checking to see if the field is empty
 
