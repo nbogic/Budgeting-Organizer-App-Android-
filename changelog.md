@@ -47,12 +47,21 @@
 ## Monday 11/April [Henry]
 - Repeating last comments.
 
-12/04/2019
-* changed class names to the appropriate naming conventions
-* allowed for information between layout changes to be retained (username, pword, email - saved in variables)
-* changed several functions to return a boolean value
+## 12/04/2019
+- changed class names to the appropriate naming conventions
+- allowed for information between layout changes to be retained (username, pword, email - saved in variables)
+- changed several functions to return a boolean value
 
-13/04/2019
+## 13/04/2019
 
-14/04/2019
+## 14/04/2019
 
+# Week 7, Monday 15 April
+- Feedback: Good to see some more progress. [Henry]
+- Feedback: Some functions still missing function comments. This is a major problem [Henry]
+- Feedback: Some of your parameter names I cannot understand. E.g. "intro_account_validate(String s1, String s2, String s3, String s4, String s5, String s6)". What are s1, s2, s3, etc? [Henry]
+- Feedback: I feel your project is falling a lot behind, and you're not putting in enough time to pass. Show me 10-14 hours each per week.. where was it spent? I'd like you to start writing the time taken per changelog item (in brackets at the end of each line), so that you can see where time is being spent / not being spent enough. [Henry]
+
+
+
+public void intro_account_validate(String s1, String s2, String s3, String s4, String s5, String s6)
