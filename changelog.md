@@ -56,7 +56,7 @@
 
 ## 14/04/2019
 
-# Week 7, Monday 15 April
+## Week 7, Monday 15 April
 - Feedback: Good to see some more progress. [Henry]
 - Feedback: Some functions still missing function comments. This is a major problem [Henry]
 - Feedback: Some of your parameter names I cannot understand. E.g. "intro_account_validate(String s1, String s2, String s3, String s4, String s5, String s6)". What are s1, s2, s3, etc? [Henry]
@@ -64,4 +64,3 @@
 
 
 
-public void intro_account_validate(String s1, String s2, String s3, String s4, String s5, String s6)
