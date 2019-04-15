@@ -52,10 +52,6 @@
 - allowed for information between layout changes to be retained (username, pword, email - saved in variables)
 - changed several functions to return a boolean value
 
-## 13/04/2019
-
-## 14/04/2019
-
 ## Week 7, Monday 15 April
 - Feedback: Good to see some more progress. [Henry]
 - Feedback: Some functions still missing function comments. This is a major problem [Henry]
