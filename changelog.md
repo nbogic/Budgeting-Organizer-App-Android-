@@ -61,4 +61,5 @@
 ## 15/04/2019
 - added comments to the functions that were lacking it
 
+## 16/04/2019
 
