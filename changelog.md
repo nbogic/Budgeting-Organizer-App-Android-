@@ -62,4 +62,11 @@
 - added comments to the functions that were lacking it
 
 ## 16/04/2019
+- new activity created to fix the issue of data not being updated in the second layout, intents are now used to pass the data, with the new activity adopting the second layout (1 hour)
+- created a function to write the user object to a file (30 min)
+
+## 17/04/2019
+
+
+## 18/04/2019
 
