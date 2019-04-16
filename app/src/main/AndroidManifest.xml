@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity_home_expenses"></activity>
+        <activity android:name=".activity_account_create2"></activity>
+        <activity android:name=".activity_home_expenses" />
         <activity android:name=".activity_home_budget" />
         <activity android:name=".activity_home_accounts" />
         <activity android:name=".activity_home" />
