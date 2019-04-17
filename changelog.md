@@ -66,6 +66,9 @@
 - created a function to write the user object to a file (30 min)
 
 ## 17/04/2019
+- changed edit text placeholder texts to correspond to their purpose (10 min)
+- added validation for both passwords to match (10 min)
+- general changes surrounding bug fixing and layout sizing changes (30 min)
 
 ## 18/04/2019
 
