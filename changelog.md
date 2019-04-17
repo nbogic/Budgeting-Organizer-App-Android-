@@ -59,7 +59,7 @@
 - Feedback: I feel your project is falling a lot behind, and you're not putting in enough time to pass. Show me 10-14 hours each per week.. where was it spent? I'd like you to start writing the time taken per changelog item (in brackets at the end of each line), so that you can see where time is being spent / not being spent enough. [Henry]
 
 ## 15/04/2019
-- added comments to the functions that were lacking it
+- added comments to the functions that were lacking it (15 min)
 
 ## 16/04/2019
 - new activity created to fix the issue of data not being updated in the second layout, intents are now used to pass the data, with the new activity adopting the second layout (1 hour)
