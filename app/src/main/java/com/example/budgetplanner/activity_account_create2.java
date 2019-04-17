@@ -21,7 +21,6 @@ public class activity_account_create2 extends AppCompatActivity implements View.
 
     private Button intro_cancel;
     private Button intro_create;
-    private Button intro_next;
     private Button intro_back;
 
     private String user_name;
@@ -44,7 +43,7 @@ public class activity_account_create2 extends AppCompatActivity implements View.
             case R.id.intro_create:
                 EditText intro_firstname = (EditText) findViewById(R.id.edit_intro_firstname);
                 EditText intro_lastname = (EditText) findViewById(R.id.edit_intro_lastname);
-                EditText intro_pin = (EditText)  findViewById(R.id.edit_intro_pin);
+                EditText intro_pin = (EditText) findViewById(R.id.edit_intro_pin);
                 pin_code = intro_pin.getText().toString();
                 first_name = intro_firstname.getText().toString();
                 last_name = intro_lastname.getText().toString();
@@ -53,9 +52,12 @@ public class activity_account_create2 extends AppCompatActivity implements View.
                 System.out.println("First name: " + first_name + " Last name: " + last_name + " Pincode: " + pin_code);
                 intent = new Intent(this, activity_home.class);
 
-                if(intro_account_create().equals(true)) {intro_account_create(); startActivity(intent);}
-                else {System.out.println("ERROR!");
-                intro_account_create();
+                if (intro_account_create().equals(true)) {
+                    intro_account_create();
+                    startActivity(intent);
+                } else {
+                    System.out.println("ERROR!");
+                    intro_account_create();
                 }
                 break;
 
@@ -64,7 +66,8 @@ public class activity_account_create2 extends AppCompatActivity implements View.
                 break;
 
             case R.id.intro_back:
-                setContentView(R.layout.layout_account_create);
+                intent = new Intent(this, activity_account_create.class);
+                startActivity(intent);
                 break;
 
         }
@@ -96,90 +99,82 @@ public class activity_account_create2 extends AppCompatActivity implements View.
         EditText intro_email = (EditText) findViewById(R.id.edit_intro_email);
 
         //validation occurs
-        if(intro_account_validate(user_name, password, pin_code, first_name, last_name, email).equals(true)) {
-        //use strings to create the user class
-        System.out.println("User name: " + user_name + " Password: " + password + " Email: " + email + " First name: " + first_name + " Last name: " + last_name + " Pincode: " + pin_code);
+        if (intro_account_validate(user_name, password, pin_code, first_name, last_name, email).equals(true)) {
+            //use strings to create the user class
+            System.out.println("User name: " + user_name + " Password: " + password + " Email: " + email + " First name: " + first_name + " Last name: " + last_name + " Pincode: " + pin_code);
 
-        //User user = new User(user_name, password, pin_code, Boolean.TRUE, first_name, last_name.toString(), email);
+            //User user = new User(user_name, password, pin_code, Boolean.TRUE, first_name, last_name.toString(), email);
 
-        //testing purposes
-        // System.out.println("User name " + user_name + "Password " + password + "Email " + email + "First name: " + first_name + "Last name: " + last_name);
-        //  } else {
-        //return false; }
+            //testing purposes
+            // System.out.println("User name " + user_name + "Password " + password + "Email " + email + "First name: " + first_name + "Last name: " + last_name);
+            //  } else {
+            //return false; }
+           // return false;
+
+            // }
+        }
         return false;
-
-        // }
     }
+
     /* this function is intended to validate a set of strings and return a boolean value based on result given
     parameters: generics
     if a string contains no characters or is of a null value, the function will return FALSE
     if this is not the case, then a TRUE value will be returned */
-    public Boolean intro_account_validate(String s1, String s2, String s3, String s4, String s5, String s6) {
-        //checking to see if the field is empty
+        public Boolean intro_account_validate (String s1, String s2, String s3, String s4, String
+        s5, String s6){
+            //checking to see if the field is empty
 
-        if(s1.equals("") || s1.equals(null))
-        {
-            System.out.println("S1 empty");
-            return false;
-        }
-        else if(s2.equals("") || s2.equals(null))
-        {
-            System.out.println("S2 empty");
-            return false;
-        }
-        else if(s3.equals("") || s3.equals(null))
-        {
-            System.out.println("S3 empty");
-            return false;
-        }
-        else if(s4.equals("") || s4.equals(null))
-        {
-            System.out.println("S4 empty");
-            return false;
-        }
-        else if(s5.equals("") || s5.equals(null))
-        {
-            System.out.println("S5 empty");
-            return false;
-        }
-        else if(s6.equals("") || s6.equals(null))
-        {
-            System.out.println("S6 empty");
-            return false;
-        } else {
-            return true;
+            if (s1.equals("") || s1.equals(null)) {
+                System.out.println("S1 empty");
+                return false;
+            } else if (s2.equals("") || s2.equals(null)) {
+                System.out.println("S2 empty");
+                return false;
+            } else if (s3.equals("") || s3.equals(null)) {
+                System.out.println("S3 empty");
+                return false;
+            } else if (s4.equals("") || s4.equals(null)) {
+                System.out.println("S4 empty");
+                return false;
+            } else if (s5.equals("") || s5.equals(null)) {
+                System.out.println("S5 empty");
+                return false;
+            } else if (s6.equals("") || s6.equals(null)) {
+                System.out.println("S6 empty");
+                return false;
+            } else {
+                return true;
+            }
+
+            //checking to see if password meets requirements
+
+            //checking to see if passwords match
+
+            //pin code validation
+
+            //character limits
+
         }
 
-        //checking to see if password meets requirements
+        @Override
+        protected void onCreate (Bundle savedInstanceState){
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.layout_account_create2);
 
-        //checking to see if passwords match
+            Intent intent = getIntent();
+            user_name = intent.getExtras().getString("user_name");
+            password = intent.getExtras().getString("email");
+            email = intent.getExtras().getString("password");
+            System.out.println("username: " + user_name + "password: " + password + "email: " + email);
 
-        //pin code validation
+            intro_cancel = (Button) findViewById(R.id.intro_cancel);
+            intro_cancel.setOnClickListener(this);
 
-        //character limits
+            intro_create = (Button) findViewById(R.id.intro_create);
+            intro_create.setOnClickListener(this);
+
+            intro_back = (Button) findViewById(R.id.intro_back);
+            intro_back.setOnClickListener(this);
+        }
 
     }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.layout_account_create2);
-        //inflated view to get the ID from the second layout's button
-
-        intro_cancel = (Button) findViewById(R.id.intro_cancel);
-        intro_cancel.setOnClickListener(this);
-
-        intro_create = (Button) findViewById(R.id.intro_create);
-        intro_create.setOnClickListener(this);
-
-        intro_next = (Button) findViewById(R.id.intro_next);
-        intro_next.setOnClickListener(this);
-
-
-        inflator = getLayoutInflater();
-        layout_account_create2 = inflator.inflate(R.layout.layout_account_create2, null);
-
-
-
-    }
-}

@@ -13,49 +13,48 @@ public class activity_account_create extends AppCompatActivity implements View.O
     private Button intro_cancel;
     private Button intro_create;
     private Button intro_next;
-    private Button intro_back;
 
     private String email;
     private String user_name;
     protected String password;
+    protected String password_confirm;
 
     @Override
     public void onClick(View view) {
         Intent intent;
-        //Intent intent2;
         switch (view.getId()) {
             case R.id.intro_cancel:
                 intent = new Intent(this, activity_intro.class);
                 startActivity(intent);
                 break;
-
             case R.id.intro_create:
                 System.out.println("There are missing fields!");
                 break;
-
             case R.id.intro_next:
                 EditText intro_username = (EditText) findViewById(R.id.edit_intro_username);
                 EditText intro_password = (EditText) findViewById(R.id.edit_intro_password);
-                //EditText intro_password2 = (EditText) findViewById(R.id.edit_intro_password2);
+                EditText intro_password2 = (EditText) findViewById(R.id.edit_intro_password2);
                 EditText intro_email = (EditText) findViewById(R.id.edit_intro_email);
-
                 email = intro_email.getText().toString();
                 user_name = intro_username.getText().toString();
                 password = intro_password.getText().toString();
+                password_confirm = intro_password2.getText().toString();
 
-                intent = new Intent(this, activity_account_create2.class);
-                intent.putExtra("user_name", user_name);
-                intent.putExtra("email", email);
-                intent.putExtra("password", password);
-                startActivity(intent);
-                break;
-
+                //minor validation check to see if passwords match
+                //user will need to retry if the password does not match
+                if(password.equals(password_confirm)) {
+                    intent = new Intent(this, activity_account_create2.class);
+                    intent.putExtra("user_name", user_name);
+                    intent.putExtra("email", email);
+                    intent.putExtra("password", password);
+                    startActivity(intent);
+                    break;
+                } else if(password.equals(null) || password.equals("")){ break; }  //the next activity is not launched due to the passwords inputted being empty or dissimilar
             case R.id.intro_back:
                 setContentView(R.layout.layout_account_create);
                 break;
         }
     }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +69,5 @@ public class activity_account_create extends AppCompatActivity implements View.O
 
         intro_next = (Button) findViewById(R.id.intro_next);
         intro_next.setOnClickListener(this);
-
     }
 }

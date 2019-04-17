@@ -92,7 +92,7 @@
             android:layout_height="43dp"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="rerteret" />
+            android:text="First name here!" />
 
         <TextView
             android:id="@+id/textView5"
@@ -106,8 +106,8 @@
             android:layout_width="match_parent"
             android:layout_height="43dp"
             android:ems="10"
-            android:inputType="textPassword"
-            android:text="ertete" />
+            android:inputType="text"
+            android:text="Last name here!" />
 
         <TextView
             android:id="@+id/textView8"
@@ -121,8 +121,7 @@
             android:layout_width="match_parent"
             android:layout_height="43dp"
             android:ems="10"
-            android:inputType="textPassword"
-            android:text="test" />
+            android:inputType="textPassword" />
 
         <LinearLayout
             android:layout_width="match_parent"
