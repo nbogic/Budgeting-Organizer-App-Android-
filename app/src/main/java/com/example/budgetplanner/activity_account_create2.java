@@ -11,11 +11,15 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStreamWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 public class activity_account_create2 extends AppCompatActivity implements View.OnClickListener {
 
@@ -30,7 +34,8 @@ public class activity_account_create2 extends AppCompatActivity implements View.
     private String last_name;
     private String pin_code;
 
-    private static final String file = "users.txt";
+    private static final String intro_file = "users.txt";
+
 
     @Override
     public void onClick(View view) {
@@ -54,6 +59,7 @@ public class activity_account_create2 extends AppCompatActivity implements View.
 
                 if (intro_account_create().equals(true)) {
                     intro_account_create();
+
                     startActivity(intent);
                 } else {
                     System.out.println("ERROR!");
@@ -76,15 +82,15 @@ public class activity_account_create2 extends AppCompatActivity implements View.
     //writes the user object to a file, file is later used to authenticate login details
     public void intro_account_write(Object user) {
         try {
-            FileOutputStream file_out = new FileOutputStream(file);
+            FileOutputStream file_out = new FileOutputStream(intro_file);
             ObjectOutputStream user_out = new ObjectOutputStream(file_out);
             user_out.writeObject(user);
+            System.out.println("Created");
             user_out.close();
         } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
-
 
     /* this function is used to create the user's account using the inputted text, it is called once the 'create' button is pressed
     as there lies an issue with multiple layouts for one activity, the second layout for the remaining information is inflated
@@ -92,28 +98,18 @@ public class activity_account_create2 extends AppCompatActivity implements View.
     before the function can return a TRUE value, the validation function must also return TRUE
     if the function returns FALSE, then a error message will be thrown out to alert the user */
     public Boolean intro_account_create() {
-        //get the current values in the edit texts
-        EditText intro_username = (EditText) findViewById(R.id.edit_intro_username);
-        EditText intro_password = (EditText) findViewById(R.id.edit_intro_password);
-        //EditText intro_password2 = (EditText) findViewById(R.id.edit_intro_password2);
-        EditText intro_email = (EditText) findViewById(R.id.edit_intro_email);
 
         //validation occurs
         if (intro_account_validate(user_name, password, pin_code, first_name, last_name, email).equals(true)) {
-            //use strings to create the user class
             System.out.println("User name: " + user_name + " Password: " + password + " Email: " + email + " First name: " + first_name + " Last name: " + last_name + " Pincode: " + pin_code);
-
-            //User user = new User(user_name, password, pin_code, Boolean.TRUE, first_name, last_name.toString(), email);
+            User user = new User(user_name, password, pin_code, Boolean.TRUE, first_name, last_name.toString(), email);
+            intro_account_write(user);
 
             //testing purposes
-            // System.out.println("User name " + user_name + "Password " + password + "Email " + email + "First name: " + first_name + "Last name: " + last_name);
-            //  } else {
-            //return false; }
-           // return false;
-
-            // }
-        }
-        return false;
+            System.out.println("User name " + user_name + "Password " + password + "Email " + email + "First name: " + first_name + "Last name: " + last_name);
+            return true;
+            } else {
+            return false; }
     }
 
     /* this function is intended to validate a set of strings and return a boolean value based on result given
