@@ -21,34 +21,35 @@ public class activity_account_login extends AppCompatActivity implements View.On
     private String user_name;
     private String password;
 
-    private static final String login_file = "users.txt";
-    private List<User> Users = new ArrayList<User>();
+    private static final String login_file = "intro_users.txt";
+    public List<User> return_user = new ArrayList<User>();
 
-    //loads the user file and extracts the relevant information, compares the strings to see if they match
-    public void intro_account_load(String entered_username, String entered_password) {
+    @Override
+    public void onClick(View view) {
+        EditText login_username = (EditText) findViewById(R.id.login_username);
+        EditText login_password = (EditText) findViewById(R.id.login_password);
+        user_name = login_username.getText().toString();
+        password = login_password.getText().toString();
+        System.out.println("You entered.... Username: " + user_name + " Password: " + password);
+        intro_account_load(login_file, user_name, password);
+        for(int i = 0; i < return_user.size(); i++)  {
+            System.out.println("Username: " +return_user.get(i).user_name);
+            System.out.println("Password: " + return_user.get(i).password);
 
-        FileInputStream fis = null;
-        try {
-            fis = openFileInput(login_file);
-            ObjectInputStream ooo = new ObjectInputStream(fis);
-            Users = (List<User>) ooo.readObject();
-
-            //testing to see if values are correct
-            System.out.println("Username: " +Users.get(1).user_name);
-            System.out.println("Password: " + Users.get(1).password);
-
-            //save retrieved values into strings
-            String retrieved_user = Users.get(1).user_name;
-            String retrieved_pass = Users.get(1).password;
-
-            //use retrieved values to see if they match
-            if(entered_username.equals(retrieved_user) || entered_password.equals(retrieved_pass)) {
-                Intent intent = new Intent(this, activity_home.class);
-                startActivity(intent);
+                if(user_name.equals(return_user.get(i).user_name) || password.equals(return_user.get(i).password)) {
+                    Intent intent = new Intent(this, activity_home.class);
+                    startActivity(intent);
+                }
             }
 
-            ooo.close();
+    }
 
+    public List<User> intro_account_load(String File, String inputted_user, String inputted_pass) {
+        FileInputStream fis = null;
+        try {
+            fis = openFileInput(File);
+            ObjectInputStream ooo = new ObjectInputStream(fis);
+            return_user = (List<User>) ooo.readObject();
             //exceptions
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -57,19 +58,8 @@ public class activity_account_login extends AppCompatActivity implements View.On
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+        return return_user;
     }
-
-
-    @Override
-    public void onClick(View view) {
-        EditText login_username = (EditText) findViewById(R.id.login_username);
-        EditText login_password = (EditText) findViewById(R.id.login_password);
-
-        user_name = login_username.getText().toString();
-        password = login_password.getText().toString();
-        intro_account_load(user_name, password);
-    }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

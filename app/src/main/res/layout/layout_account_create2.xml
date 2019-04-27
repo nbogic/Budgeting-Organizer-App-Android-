@@ -91,8 +91,7 @@
             android:layout_width="match_parent"
             android:layout_height="43dp"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:text="First name here!" />
+            android:inputType="textPersonName" />
 
         <TextView
             android:id="@+id/textView5"
@@ -106,8 +105,7 @@
             android:layout_width="match_parent"
             android:layout_height="43dp"
             android:ems="10"
-            android:inputType="text"
-            android:text="Last name here!" />
+            android:inputType="text" />
 
         <TextView
             android:id="@+id/textView8"

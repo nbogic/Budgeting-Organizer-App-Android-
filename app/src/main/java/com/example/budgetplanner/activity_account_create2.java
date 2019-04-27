@@ -18,10 +18,12 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStreamWriter;
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-public class activity_account_create2 extends AppCompatActivity implements View.OnClickListener {
+public class activity_account_create2 extends AppCompatActivity implements View.OnClickListener, Serializable {
 
     private Button intro_cancel;
     private Button intro_create;
@@ -34,8 +36,8 @@ public class activity_account_create2 extends AppCompatActivity implements View.
     private String last_name;
     private String pin_code;
 
-    private static final String intro_file = "users.txt";
-
+    public List<User> intro_user = new ArrayList();
+    private static final String login_file = "intro_users.txt";
 
     @Override
     public void onClick(View view) {
@@ -53,18 +55,9 @@ public class activity_account_create2 extends AppCompatActivity implements View.
                 first_name = intro_firstname.getText().toString();
                 last_name = intro_lastname.getText().toString();
 
-
-                System.out.println("First name: " + first_name + " Last name: " + last_name + " Pincode: " + pin_code);
                 intent = new Intent(this, activity_home.class);
-
-                if (intro_account_create().equals(true)) {
-                    intro_account_create();
-
-                    startActivity(intent);
-                } else {
-                    System.out.println("ERROR!");
-                    intro_account_create();
-                }
+                intro_account_create();
+                startActivity(intent);
                 break;
 
             case R.id.intro_next:
@@ -75,21 +68,25 @@ public class activity_account_create2 extends AppCompatActivity implements View.
                 intent = new Intent(this, activity_account_create.class);
                 startActivity(intent);
                 break;
-
         }
     }
 
-    //writes the user object to a file, file is later used to authenticate login details
-    public void intro_account_write(Object user) {
+    //writes the created user object into a file in the form of a list
+    //returns the aforementioned list as a return type
+    public List<User> intro_account_write(String File) {
+        //testing for feedback
+        System.out.println("Created!");
+        FileOutputStream file_out;
+        File file = new File(getFilesDir(), File);
         try {
-            FileOutputStream file_out = new FileOutputStream(intro_file);
+            file_out = new FileOutputStream(file);
             ObjectOutputStream user_out = new ObjectOutputStream(file_out);
-            user_out.writeObject(user);
-            System.out.println("Created");
+            user_out.writeObject(intro_user);
             user_out.close();
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+        return intro_user;
     }
 
     /* this function is used to create the user's account using the inputted text, it is called once the 'create' button is pressed
@@ -101,76 +98,104 @@ public class activity_account_create2 extends AppCompatActivity implements View.
 
         //validation occurs
         if (intro_account_validate(user_name, password, pin_code, first_name, last_name, email).equals(true)) {
-            System.out.println("User name: " + user_name + " Password: " + password + " Email: " + email + " First name: " + first_name + " Last name: " + last_name + " Pincode: " + pin_code);
-            User user = new User(user_name, password, pin_code, Boolean.TRUE, first_name, last_name.toString(), email);
-            intro_account_write(user);
+            User user = new User(user_name, password, pin_code, first_name, last_name, email);
+            intro_user.add(user);
+            intro_account_write(login_file);
 
-            //testing purposes
-            System.out.println("User name " + user_name + "Password " + password + "Email " + email + "First name: " + first_name + "Last name: " + last_name);
+            //testing for feedback
+            System.out.println("Following details - User name " + user.user_name + "Password " + user.password + "Email " + user.email + "First name: " + user.first_name + "Last name: " + user.last_name);
+            System.out.println("Following details from intro_user - User name " + intro_user.get(0).user_name + "Password " + intro_user.get(0).password + "Email " + intro_user.get(0).email + "First name: " + intro_user.get(0).first_name + "Last name: " + intro_user.get(0).last_name);
             return true;
-            } else {
-            return false; }
+        } else {
+            return false;
+        }
     }
 
     /* this function is intended to validate a set of strings and return a boolean value based on result given
     parameters: generics
     if a string contains no characters or is of a null value, the function will return FALSE
     if this is not the case, then a TRUE value will be returned */
-        public Boolean intro_account_validate (String s1, String s2, String s3, String s4, String
-        s5, String s6){
-            //checking to see if the field is empty
-
-            if (s1.equals("") || s1.equals(null)) {
-                System.out.println("S1 empty");
-                return false;
-            } else if (s2.equals("") || s2.equals(null)) {
-                System.out.println("S2 empty");
-                return false;
-            } else if (s3.equals("") || s3.equals(null)) {
-                System.out.println("S3 empty");
-                return false;
-            } else if (s4.equals("") || s4.equals(null)) {
-                System.out.println("S4 empty");
-                return false;
-            } else if (s5.equals("") || s5.equals(null)) {
-                System.out.println("S5 empty");
-                return false;
-            } else if (s6.equals("") || s6.equals(null)) {
-                System.out.println("S6 empty");
-                return false;
-            } else {
-                return true;
-            }
-
-            //checking to see if password meets requirements
-
-            //checking to see if passwords match
-
-            //pin code validation
-
-            //character limits
-
+    public Boolean intro_account_validate(String s1, String s2, String s3, String s4, String
+            s5, String s6) {
+        //checking to see if the field is empty
+        if (s1.equals("") || s1.equals(null)) {
+            System.out.println("S1 empty");
+            return false;
+        } else if (s2.equals("") || s2.equals(null)) {
+            System.out.println("S2 empty");
+            return false;
+        } else if (s3.equals("") || s3.equals(null)) {
+            System.out.println("S3 empty");
+            return false;
+        } else if (s4.equals("") || s4.equals(null)) {
+            System.out.println("S4 empty");
+            return false;
+        } else if (s5.equals("") || s5.equals(null)) {
+            System.out.println("S5 empty");
+            return false;
+        } else if (s6.equals("") || s6.equals(null)) {
+            System.out.println("S6 empty");
+            return false;
+        } else {
+            return true;
         }
 
-        @Override
-        protected void onCreate (Bundle savedInstanceState){
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.layout_account_create2);
+        //checking to see if password meets requirements
 
-            Intent intent = getIntent();
-            user_name = intent.getExtras().getString("user_name");
-            password = intent.getExtras().getString("email");
-            email = intent.getExtras().getString("password");
-            System.out.println("username: " + user_name + "password: " + password + "email: " + email);
+        //checking to see if passwords match
 
-            intro_cancel = (Button) findViewById(R.id.intro_cancel);
-            intro_cancel.setOnClickListener(this);
+        //pin code validation
 
-            intro_create = (Button) findViewById(R.id.intro_create);
-            intro_create.setOnClickListener(this);
-
-            intro_back = (Button) findViewById(R.id.intro_back);
-            intro_back.setOnClickListener(this);
-        }
+        //character limits
 
     }
+
+    //loads the object list from the account file
+    //return type is the inner function created list
+    public List<User> intro_account_load(String File) {
+        FileInputStream fis = null;
+        List<User> user_gen = new ArrayList<User>();
+        try {
+            fis = openFileInput(File);
+            ObjectInputStream ooo = new ObjectInputStream(fis);
+            user_gen = (List<User>) ooo.readObject();
+            ooo.close();
+
+            //exceptions
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return user_gen;
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.layout_account_create2);
+        
+        //assigns intro_user to the latest version of the file
+        //this is to avoid data loss/overwriting when the application is exited, it will retain user details
+        intro_user = intro_account_load(login_file);
+
+        Intent intent = getIntent();
+        user_name = intent.getExtras().getString("user_name");
+        password = intent.getExtras().getString("email");
+        email = intent.getExtras().getString("password");
+        System.out.println("username: " + user_name + "password: " + password + "email: " + email);
+
+        intro_cancel = (Button) findViewById(R.id.intro_cancel);
+        intro_cancel.setOnClickListener(this);
+
+        intro_create = (Button) findViewById(R.id.intro_create);
+        intro_create.setOnClickListener(this);
+
+        intro_back = (Button) findViewById(R.id.intro_back);
+        intro_back.setOnClickListener(this);
+    }
+
+
+}
