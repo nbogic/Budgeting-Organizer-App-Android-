@@ -71,10 +71,13 @@
 - general changes surrounding bug fixing and layout sizing changes (30 min)
 
 ## 18/04/2019
+- created login function (read from user object) /w validation, users can now login after creating their account (1 hour)
+- buttons perform their relevant functions in the login activity (20 min)
 
-## 19/04/2019
+## 25/04/2019
 
-## 20/04/2019
+## 26/04/2019
 
-## 21/04/2019
+## 27/04/2019
 
+## 28/04/2019
