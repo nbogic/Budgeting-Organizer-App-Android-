@@ -35,10 +35,6 @@ public class activity_home_accounts extends AppCompatActivity implements View.On
                 startActivity(intent);
                 break;
         }
-
-        intent = new Intent(this, activity_home_budget.class);
-        startActivity(intent);
-
     }
 
     @Override

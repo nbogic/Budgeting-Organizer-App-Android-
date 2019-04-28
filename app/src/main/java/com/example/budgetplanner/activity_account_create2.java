@@ -1,15 +1,11 @@
 package com.example.budgetplanner;
 
-import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -17,10 +13,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.OutputStreamWriter;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class activity_account_create2 extends AppCompatActivity implements View.OnClickListener, Serializable {
@@ -36,7 +30,10 @@ public class activity_account_create2 extends AppCompatActivity implements View.
     private String last_name;
     private String pin_code;
 
+    //initialize a list that will contain a new user
     public List<User> intro_user = new ArrayList();
+
+    //text files that will store a list of active users
     private static final String login_file = "intro_users.txt";
 
     @Override
@@ -72,7 +69,7 @@ public class activity_account_create2 extends AppCompatActivity implements View.
     }
 
     //writes the created user object into a file in the form of a list
-    //returns the aforementioned list as a return type
+    //returns the aforementioned list as a return type to ensure the function has multiple uses/purposes
     public List<User> intro_account_write(String File) {
         //testing for feedback
         System.out.println("Created!");
@@ -151,7 +148,7 @@ public class activity_account_create2 extends AppCompatActivity implements View.
     }
 
     //loads the object list from the account file
-    //return type is the inner function created list
+    //return type is the inner function created list, only used within this activity
     public List<User> intro_account_load(String File) {
         FileInputStream fis = null;
         List<User> user_gen = new ArrayList<User>();
@@ -176,15 +173,19 @@ public class activity_account_create2 extends AppCompatActivity implements View.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_account_create2);
-        
+
         //assigns intro_user to the latest version of the file
         //this is to avoid data loss/overwriting when the application is exited, it will retain user details
         intro_user = intro_account_load(login_file);
 
+        //get the username, password, and email that was saved in the previous activity
+        //assign it to the appropriate strings, which are later used in the object's (user) creation
         Intent intent = getIntent();
         user_name = intent.getExtras().getString("user_name");
-        password = intent.getExtras().getString("email");
-        email = intent.getExtras().getString("password");
+        password = intent.getExtras().getString("password");
+        email = intent.getExtras().getString("email");
+
+        //testing
         System.out.println("username: " + user_name + "password: " + password + "email: " + email);
 
         intro_cancel = (Button) findViewById(R.id.intro_cancel);

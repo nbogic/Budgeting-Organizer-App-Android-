@@ -35,9 +35,6 @@ public class activity_home_budget extends AppCompatActivity implements View.OnCl
                 startActivity(intent);
                 break;
         }
-
-        //testing
-        System.out.println("Id" + view.getId());
     }
 
     @Override

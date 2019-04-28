@@ -6,14 +6,21 @@ import android.os.Bundle;
 import android.text.Layout;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
-public class activity_home extends AppCompatActivity implements View.OnClickListener {
+import java.io.Serializable;
+
+public class activity_home extends AppCompatActivity implements View.OnClickListener, Serializable {
 
     //home layout buttons
     private Button home;
+    private Button home_profile;
     private Button home_expenses;
     private Button home_accounts;
     private Button home_budget;
+    private TextView home_name;
+
+    private User user;
 
     @Override
     public void onClick(View view) {
@@ -35,19 +42,28 @@ public class activity_home extends AppCompatActivity implements View.OnClickList
                 intent = new Intent(this, activity_home_budget.class);
                 startActivity(intent);
                 break;
+            case R.id.home_profile_button:
+                intent = new Intent(this, activity_account_personal.class);
+                intent.putExtra("User", user);
+                startActivity(intent);
+                break;
         }
-
-        intent = new Intent(this, activity_home_budget.class);
-        startActivity(intent);
-
-        //testing
-        System.out.println("Id TESTESTSTSETSET" + view.getId());
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_home);
+
+        //get the user object that was passed from the previous activity (login)
+        Intent intent = getIntent();
+        //assign the returned object to the current user object
+        user = (User)intent.getSerializableExtra("User");
+        //change the TextView to display the user's first name using the new user object, welcome message
+        home_name = (TextView) findViewById(R.id.home_name);
+        if(user == null) {
+            home_name.setText("Welcome back!");
+        } else { home_name.setText("Welcome back " + user.first_name + "!"); }
 
         //linking buttons to their respective ids
         home = (Button) findViewById(R.id.home);
@@ -62,7 +78,7 @@ public class activity_home extends AppCompatActivity implements View.OnClickList
         home_budget = (Button) findViewById(R.id.home_budget);
         home.setOnClickListener(this);
 
-
-
+        home_profile = (Button) findViewById(R.id.home_profile_button);
+        home.setOnClickListener(this);
     }
 }
