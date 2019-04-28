@@ -85,3 +85,6 @@
 - values from the passed down user object is assigned to the personal layout textviews, buttons are assigned (30 min)
 - welcome message added on the home screen with the user's first name (10 min)
 - more documentation/comments added (20 min)
+
+# Week 8
+
