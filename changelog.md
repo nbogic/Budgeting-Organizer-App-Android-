@@ -87,4 +87,4 @@
 - more documentation/comments added (20 min)
 
 # Week 8
-
+- user can now successfully change their password/pincode and update their account (user class), user detail change layout and activity created, function created to update user details with minor validation (1 hour 30min)
