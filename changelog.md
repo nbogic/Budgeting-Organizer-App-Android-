@@ -71,13 +71,20 @@
 - general changes surrounding bug fixing and layout sizing changes (30 min)
 
 ## 18/04/2019
-- created login function (read from user object) /w validation, users can now login after creating their account (1 hour)
+- created login function (read from user object) /w validation, users can now login after creating their account (2 hours)
 - buttons perform their relevant functions in the login activity (20 min)
 
-## 25/04/2019
-
-## 26/04/2019
-
 ## 27/04/2019
+- changed the read and write functions to accept a arraylist of accounts, added serialization to user class, and the app now retains user information (no issue of overwritten files, which was found in the previous build) (1 hour)
+- corrected placeholder text and adjusted/rearraged incorrect user class values (password mixed with email, etc) (30 min)
+- changed onClick: created a for loop to traverse across multiple accounts to find the correct match (30 min)
+- removed action bar from the application as it was interfering with general layout proportions (10 min)
 
 ## 28/04/2019
+- secondary feature: created a layout/activity to list the user's personal details, where they can view their current information and change their password/pincode (1 hour)
+- values from the passed down user object is assigned to the personal layout textviews, buttons are assigned (30 min)
+- welcome message added on the home screen with the user's first name (10 min)
+- more documentation/comments added (20 min)
+
+# Week 8
+
