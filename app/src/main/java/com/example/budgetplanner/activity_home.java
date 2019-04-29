@@ -44,7 +44,11 @@ public class activity_home extends AppCompatActivity implements View.OnClickList
                 break;
             case R.id.home_profile_button:
                 intent = new Intent(this, activity_account_personal.class);
-                intent.putExtra("User", user);
+                User user_intent;
+                user_intent = user;
+                intent.putExtra("Home_User", user_intent);
+                System.out.println("Details from home screen ----- username: " + user_intent.user_name + "password: " + user_intent.password + "email: " + user_intent.email + "first name: " + user_intent.first_name);
+
                 startActivity(intent);
                 break;
         }
