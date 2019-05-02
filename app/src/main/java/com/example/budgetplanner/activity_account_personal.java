@@ -50,16 +50,19 @@ public class activity_account_personal extends AppCompatActivity implements View
                 startActivity(intent);
                 break;
             case R.id.personal_change_pass:
+                intent = new Intent(this, activity_account_personal_change.class);
                 option = "password";
-                intent = new Intent(this, activity_home_budget.class);
-                intent.putExtra(option, "Option");
+                System.out.println("The option is: " + option);
+                intent.putExtra("Option1", option);
                 intent.putExtra("home_user2", home_user);
                 startActivity(intent);
                 break;
             case R.id.personal_change_pin:
+                intent = new Intent(this, activity_account_personal_change.class);
                 option = "pincode";
-                intent = new Intent(this, activity_home_budget.class);
-                intent.putExtra(option, "Option");
+                System.out.println("The option is: " + option);
+                intent.putExtra("home_user2", home_user);
+                intent.putExtra("Option1", option);
                 startActivity(intent);
                 break;
         }

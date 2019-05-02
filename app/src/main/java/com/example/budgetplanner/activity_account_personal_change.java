@@ -31,7 +31,7 @@ public class activity_account_personal_change extends AppCompatActivity implemen
     private EditText edit_old_password;
     private EditText edit_new;
     private EditText edit_new2;
-    private String option;
+    public String option1;
 
     @Override
     public void onClick(View view) {
@@ -55,10 +55,10 @@ public class activity_account_personal_change extends AppCompatActivity implemen
                 break;
             case R.id.personal_confirm:
                 //decides which information will be tested
-                if(option.equals("password")) {
+                if(option1.equals("password")) {
                     personal_switch_option("password_confirm");
                 }
-                if(option.equals("pincode")) {
+                if(option1.equals("pincode")) {
                     personal_switch_option("pincode_confirm");
                 }
                 break;
@@ -97,17 +97,29 @@ public class activity_account_personal_change extends AppCompatActivity implemen
                 edit_new = (EditText) findViewById(R.id.edit_new);
                 edit_new2 = (EditText) findViewById(R.id.edit_new2);
 
-                String old_pin, new_pin, new_pin2;
+                String old_pin, new_pin;
+                String new_pin2;
                 old_pin = edit_old_password.getText().toString();
                 new_pin = edit_new.getText().toString();
                 new_pin2 = edit_new2.getText().toString();
 
-                if(old_pin.equals(home_user2.pin_code) || new_pin.equals(new_pin2)) {
+
+
+                System.out.println("old_pin: " + old_pin);
+                System.out.println("new pin: " + new_pin);
+                System.out.println("new pin2: " + new_pin2);
+                System.out.println("User pin: " + home_user2.pin_code);
+
+
+
+
+               /* if(old_pin.equals(home_user2.pin_code) || new_pin.equals(new_pin2)) {
                     home_user2.pin_code = new_pin;
                     Intent intent = new Intent(this, activity_account_personal.class);
                     intent.putExtra("home_user_new", home_user2);
                     startActivity(intent);
                 }
+                */
                 break;
                 //set labels to refer to password
             case "password":
@@ -131,15 +143,6 @@ public class activity_account_personal_change extends AppCompatActivity implemen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_home_personal_change);
 
-        Intent intent = getIntent();
-
-        //get the option string from previous activity, can only be one of two different values
-        option = intent.getStringExtra("Option");
-        home_user2 = (User) intent.getSerializableExtra("home_user2");
-
-        //use this function to set all the textviews to their relevant labels (password/pincode)
-        personal_switch_option(option);
-
         confirm = (Button) findViewById(R.id.personal_confirm);
         confirm.setOnClickListener(this);
 
@@ -150,6 +153,19 @@ public class activity_account_personal_change extends AppCompatActivity implemen
         enter_current = (TextView) findViewById(R.id.home_change_current);
         enter_new = (TextView) findViewById(R.id.home_change_new);
         enter_new2 = (TextView) findViewById(R.id.home_change_new2);
+
+        Intent intent = getIntent();
+
+        //get the option string from previous activity, can only be one of two different values
+        option1 = intent.getStringExtra("Option1");
+        System.out.println("The option is: " + option1);
+
+        home_user2 = (User) intent.getSerializableExtra("home_user2");
+
+        //use this function to set all the textviews to their relevant labels (password/pincode)
+        personal_switch_option(option1);
+
+
 
     }
 }

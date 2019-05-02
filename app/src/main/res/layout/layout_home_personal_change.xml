@@ -27,80 +27,111 @@
         android:id="@+id/view32"
         android:layout_width="359dp"
         android:layout_height="148dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:background="@color/colorBackground"
-        tools:layout_editor_absoluteX="26dp"
-        tools:layout_editor_absoluteY="181dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.315" />
 
     <TextView
         android:id="@+id/home_change_current"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
         android:text="Enter current _:"
-        tools:layout_editor_absoluteX="40dp"
-        tools:layout_editor_absoluteY="200dp" />
+        app:layout_constraintEnd_toEndOf="@+id/view32"
+        app:layout_constraintHorizontal_bias="0.053"
+        app:layout_constraintStart_toStartOf="@+id/view32"
+        app:layout_constraintTop_toTopOf="@+id/view32" />
 
     <TextView
         android:id="@+id/home_change_new"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
         android:text="Enter new _:"
-        tools:layout_editor_absoluteX="40dp"
-        tools:layout_editor_absoluteY="248dp" />
+        app:layout_constraintEnd_toEndOf="@+id/view32"
+        app:layout_constraintHorizontal_bias="0.049"
+        app:layout_constraintStart_toStartOf="@+id/view32"
+        app:layout_constraintTop_toTopOf="@+id/view32" />
 
     <TextView
         android:id="@+id/home_change_new2"
         android:layout_width="wrap_content"
         android:layout_height="24dp"
+        android:layout_marginTop="116dp"
         android:text="Enter again:"
-        tools:layout_editor_absoluteX="42dp"
-        tools:layout_editor_absoluteY="305dp" />
+        app:layout_constraintEnd_toEndOf="@+id/view32"
+        app:layout_constraintHorizontal_bias="0.049"
+        app:layout_constraintStart_toStartOf="@+id/view32"
+        app:layout_constraintTop_toTopOf="@+id/view32" />
 
     <Button
         android:id="@+id/personal_confirm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:text="CONFIRM"
-        tools:layout_editor_absoluteX="281dp"
-        tools:layout_editor_absoluteY="200dp" />
+        app:layout_constraintEnd_toEndOf="@+id/view32"
+        app:layout_constraintHorizontal_bias="0.94"
+        app:layout_constraintStart_toStartOf="@+id/view32"
+        app:layout_constraintTop_toTopOf="@+id/view32" />
 
     <Button
         android:id="@+id/personal_cancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
         android:text="CANCEL"
-        tools:layout_editor_absoluteX="281dp"
-        tools:layout_editor_absoluteY="265dp" />
+        app:layout_constraintEnd_toEndOf="@+id/view32"
+        app:layout_constraintHorizontal_bias="0.94"
+        app:layout_constraintStart_toStartOf="@+id/view32"
+        app:layout_constraintTop_toTopOf="@+id/view32" />
 
     <EditText
         android:id="@+id/edit_current"
         android:layout_width="106dp"
         android:layout_height="31dp"
+        android:layout_marginTop="28dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Name"
         android:textSize="10sp"
-        tools:layout_editor_absoluteX="40dp"
-        tools:layout_editor_absoluteY="219dp" />
+        app:layout_constraintEnd_toEndOf="@+id/view32"
+        app:layout_constraintHorizontal_bias="0.063"
+        app:layout_constraintStart_toStartOf="@+id/view32"
+        app:layout_constraintTop_toTopOf="@+id/view32" />
 
     <EditText
         android:id="@+id/edit_new"
         android:layout_width="106dp"
         android:layout_height="42dp"
+        android:layout_marginTop="76dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Name"
         android:textSize="10sp"
-        tools:layout_editor_absoluteX="40dp"
-        tools:layout_editor_absoluteY="263dp" />
+        app:layout_constraintEnd_toEndOf="@+id/view32"
+        app:layout_constraintHorizontal_bias="0.055"
+        app:layout_constraintStart_toStartOf="@+id/view32"
+        app:layout_constraintTop_toTopOf="@+id/view32" />
 
     <EditText
         android:id="@+id/edit_new2"
         android:layout_width="106dp"
         android:layout_height="42dp"
+        android:layout_marginTop="76dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Name"
         android:textSize="10sp"
-        tools:layout_editor_absoluteX="152dp"
-        tools:layout_editor_absoluteY="263dp" />
+        app:layout_constraintEnd_toEndOf="@+id/view32"
+        app:layout_constraintHorizontal_bias="0.474"
+        app:layout_constraintStart_toStartOf="@+id/view32"
+        app:layout_constraintTop_toTopOf="@+id/view32" />
 </android.support.constraint.ConstraintLayout>
