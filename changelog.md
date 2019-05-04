@@ -89,3 +89,10 @@
 # Week 8
 ## 29/04/2019
 - user can now successfully change their password/pincode and update their account (user class), user detail change layout and activity created, function created to update user details with minor validation (1 hour 30min)
+
+## 3/05/2019
+
+## 4/05/2019
+
+## 5/05/2019
+
