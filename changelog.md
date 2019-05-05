@@ -96,3 +96,6 @@
 
 ## 5/05/2019
 - main feature: the user can now create expenses that are tied to their accounts (expense object saved under the user object), included functionality to overwrite files, implemented date picker (4 hours)
+- comments/documentation (continued) (30 min)
+- added attributes/variables/constructor to expenses class (30 min)
+- added possible entries for spinner in values file (20 min)
