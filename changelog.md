@@ -99,3 +99,6 @@
 - comments/documentation (continued) (30 min)
 - added attributes/variables/constructor to expenses class (30 min)
 - added possible entries for spinner in values file (20 min)
+# Week 9
+## 6/05/2019
+
