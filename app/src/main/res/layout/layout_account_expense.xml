@@ -65,8 +65,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.828" />
+        app:layout_constraintTop_toBottomOf="@+id/view10"
+        app:layout_constraintVertical_bias="0.207" />
 
     <TextView
         android:id="@+id/add_title"
@@ -100,7 +100,7 @@
         app:layout_constraintHorizontal_bias="0.083"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.747" />
+        app:layout_constraintVertical_bias="0.705" />
 
     <TextView
         android:id="@+id/add_dates2"
@@ -117,7 +117,7 @@
         app:layout_constraintHorizontal_bias="0.089"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.828" />
+        app:layout_constraintVertical_bias="0.807" />
 
     <TextView
         android:id="@+id/add_amount"
@@ -173,16 +173,15 @@
         app:layout_constraintVertical_bias="0.741" />
 
     <TextView
-        android:id="@+id/add_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Choose date"
+        android:id="@+id/add_date2"
+        android:layout_width="91dp"
+        android:layout_height="36dp"
         app:layout_constraintBottom_toBottomOf="@+id/view9"
         app:layout_constraintEnd_toEndOf="@+id/view9"
-        app:layout_constraintHorizontal_bias="0.056"
+        app:layout_constraintHorizontal_bias="0.454"
         app:layout_constraintStart_toStartOf="@+id/view9"
         app:layout_constraintTop_toTopOf="@+id/view9"
-        app:layout_constraintVertical_bias="0.172" />
+        app:layout_constraintVertical_bias="0.365" />
 
     <TextView
         android:id="@+id/add_account"
@@ -197,23 +196,20 @@
         app:layout_constraintVertical_bias="0.172" />
 
     <Spinner
-        android:id="@+id/expense_spinner"
-        android:layout_width="204dp"
-        android:layout_height="wrap_content"
-        android:spinnerMode="dropdown"
-        tools:layout_editor_absoluteX="140dp"
-        tools:layout_editor_absoluteY="115dp" />
-
-    <Spinner
         android:id="@+id/expense_spinner2"
         android:layout_width="204dp"
         android:layout_height="wrap_content"
+        android:entries="@array/category_arrays"
         android:spinnerMode="dropdown"
-        tools:layout_editor_absoluteX="140dp"
-        tools:layout_editor_absoluteY="148dp" />
+        app:layout_constraintBottom_toBottomOf="@+id/view2"
+        app:layout_constraintEnd_toEndOf="@+id/view2"
+        app:layout_constraintHorizontal_bias="0.778"
+        app:layout_constraintStart_toStartOf="@+id/view2"
+        app:layout_constraintTop_toTopOf="@+id/view2"
+        app:layout_constraintVertical_bias="0.773" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/edit_amount"
         android:layout_width="311dp"
         android:layout_height="112dp"
         android:ems="10"
@@ -228,16 +224,67 @@
         android:id="@+id/expense_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:onClick="onClick"
         android:text="ADD"
-        tools:layout_editor_absoluteX="285dp"
-        tools:layout_editor_absoluteY="16dp" />
+        app:layout_constraintBottom_toTopOf="@+id/view2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.902"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.488" />
 
     <Button
         android:id="@+id/expense_cancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:text="CANCEL"
-        tools:layout_editor_absoluteX="192dp"
-        tools:layout_editor_absoluteY="16dp" />
+        app:layout_constraintBottom_toTopOf="@+id/view2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.576"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.488" />
+
+    <Button
+        android:id="@+id/button_add_date"
+        android:layout_width="87dp"
+        android:layout_height="36dp"
+        android:onClick="onClick"
+        android:text="CHOOSE DATE"
+        android:textSize="9sp"
+        app:layout_constraintBottom_toBottomOf="@+id/view9"
+        app:layout_constraintEnd_toEndOf="@+id/view9"
+        app:layout_constraintHorizontal_bias="0.06"
+        app:layout_constraintStart_toStartOf="@+id/view9"
+        app:layout_constraintTop_toTopOf="@+id/view9"
+        app:layout_constraintVertical_bias="0.17" />
+
+    <Switch
+        android:id="@+id/switch_recurring"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/view9"
+        app:layout_constraintEnd_toEndOf="@+id/view9"
+        app:layout_constraintHorizontal_bias="0.702"
+        app:layout_constraintStart_toStartOf="@+id/view9"
+        app:layout_constraintTop_toTopOf="@+id/view9"
+        app:layout_constraintVertical_bias="0.86" />
+
+    <EditText
+        android:id="@+id/edit_destination"
+        android:layout_width="201dp"
+        android:layout_height="33dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        tools:layout_editor_absoluteX="143dp"
+        tools:layout_editor_absoluteY="115dp" />
 
 </android.support.constraint.ConstraintLayout>

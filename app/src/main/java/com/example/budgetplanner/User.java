@@ -1,8 +1,12 @@
 package com.example.budgetplanner;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class User implements Serializable {
+
+    private static final long serialVersionUID = -426918219129328097L;
 
     public String user_name;
     public String password;
@@ -10,7 +14,7 @@ public class User implements Serializable {
 
     //budget class declaration here
     //account class declaration here
-    //expenses class declaration here
+    public List<Expenses> expenses = new ArrayList();
 
     //public Boolean status;
     public String first_name;

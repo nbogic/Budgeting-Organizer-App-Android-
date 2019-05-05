@@ -1,4 +1,17 @@
 <resources>
     <string name="app_name">BudgetPlanner</string>
     <string name="title_activity_home">activity_home</string>
+
+    <string-array name="category_arrays">
+        <item>Car</item>
+        <item>Bills</item>
+        <item>Groceries</item>
+        <item>Clothing</item>
+        <item>Entertainment</item>
+        <item>Travel</item>
+        <item>Medical</item>
+        <item>Education</item>
+    </string-array>
+
+
 </resources>

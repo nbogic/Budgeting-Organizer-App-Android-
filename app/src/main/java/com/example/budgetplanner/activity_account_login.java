@@ -19,7 +19,7 @@ public class activity_account_login extends AppCompatActivity implements View.On
     private String user_name;
     private String password;
 
-    private static final String login_file = "intro_users.txt";
+    private static final String login_file = "list_users.txt";
     public List<User> return_user = new ArrayList<User>();
 
     @Override
