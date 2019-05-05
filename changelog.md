@@ -95,4 +95,4 @@
 - created interchangeable layout for main feature (budget planning) (1 hour)
 
 ## 5/05/2019
-
+- main feature: the user can now create expenses that are tied to their accounts (expense object saved under the user object), included functionality to overwrite files, implemented date picker (4 hours)
