@@ -101,4 +101,5 @@
 - added possible entries for spinner in values file (20 min)
 # Week 9
 ## 6/05/2019
+- main feature: layout created for account creation process, activities made (budget/account creation) (40 min)
 
