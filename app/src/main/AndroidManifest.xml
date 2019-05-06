@@ -12,7 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity_account_add"></activity>
+        <activity android:name=".activity_account_budget"></activity>
+        <activity android:name=".activity_account_accounts" />
+        <activity android:name=".activity_account_expenses" />
         <activity android:name=".activity_account_personal_change" />
         <activity android:name=".activity_account_personal" />
         <activity android:name=".activity_account_create2" />

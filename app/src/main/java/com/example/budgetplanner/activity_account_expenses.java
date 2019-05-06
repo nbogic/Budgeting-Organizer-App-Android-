@@ -6,7 +6,6 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -26,9 +25,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class activity_account_add extends AppCompatActivity implements View.OnClickListener {
+public class activity_account_expenses extends AppCompatActivity implements View.OnClickListener {
 
-    private static final String TAG = "activity_account_add";
+    private static final String TAG = "activity_account_expenses";
     private static final String login_file = "list_users.txt";
 
     private DatePickerDialog.OnDateSetListener OnDateSetListener;
@@ -94,7 +93,7 @@ public class activity_account_add extends AppCompatActivity implements View.OnCl
                 expense_day = calendar.get(Calendar.DAY_OF_MONTH);
 
                 //create dialog, change appearance, include variables created above
-                DatePickerDialog exp_dialog = new DatePickerDialog(activity_account_add.this, android.R.style.Theme_Holo_Light_Dialog_MinWidth, OnDateSetListener, expense_year, expense_month, expense_day);
+                DatePickerDialog exp_dialog = new DatePickerDialog(activity_account_expenses.this, android.R.style.Theme_Holo_Light_Dialog_MinWidth, OnDateSetListener, expense_year, expense_month, expense_day);
                 exp_dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.GREEN));
                 exp_dialog.show();
 

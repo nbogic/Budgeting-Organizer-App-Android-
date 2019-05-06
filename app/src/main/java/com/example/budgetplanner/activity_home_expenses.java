@@ -5,8 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 public class activity_home_expenses extends AppCompatActivity implements View.OnClickListener {
 
@@ -53,7 +51,7 @@ public class activity_home_expenses extends AppCompatActivity implements View.On
                 break;
 
             case R.id.expenses_create:
-                intent = new Intent(this, activity_account_add.class);
+                intent = new Intent(this, activity_account_expenses.class);
                 user_intent = user;
                 intent.putExtra("Home_User", user_intent);
                 startActivity(intent);
