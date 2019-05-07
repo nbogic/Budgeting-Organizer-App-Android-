@@ -103,5 +103,5 @@
 ## 6/05/2019
 - main feature: layout created for account creation process, activities made (budget/account creation) (40 min)
 
-## 7/05/2019
+## 8/05/2019
 
