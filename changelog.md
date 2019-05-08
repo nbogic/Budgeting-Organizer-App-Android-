@@ -104,4 +104,8 @@
 - main feature: layout created for account creation process, activities made (budget/account creation) (40 min)
 
 ## 8/05/2019
+[Henry]
+- Good progress. Glad to see it's getting closer. Final stretch now. 
+- Make sure you go over everything in the Grading Criteria super carefully, to ensure you meet each point.
+
 
