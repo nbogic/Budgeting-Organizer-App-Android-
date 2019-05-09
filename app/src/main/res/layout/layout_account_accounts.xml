@@ -7,6 +7,32 @@
     android:background="@drawable/background_intro_temporary"
     tools:context=".activity_account_accounts">
 
+    <TextView
+        android:id="@+id/add_date3"
+        android:layout_width="91dp"
+        android:layout_height="36dp"
+        app:layout_constraintBottom_toBottomOf="@+id/view9"
+        app:layout_constraintEnd_toEndOf="@+id/view9"
+        app:layout_constraintHorizontal_bias="0.963"
+        app:layout_constraintStart_toStartOf="@+id/view9"
+        app:layout_constraintTop_toTopOf="@+id/view9"
+        app:layout_constraintVertical_bias="0.901" />
+
+    <Button
+        android:id="@+id/income_add_date"
+        android:layout_width="87dp"
+        android:layout_height="36dp"
+        android:onClick="onClick"
+        android:text="CHOOSE DATE"
+        android:textSize="9sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/view9"
+        app:layout_constraintEnd_toEndOf="@+id/view9"
+        app:layout_constraintHorizontal_bias="0.919"
+        app:layout_constraintStart_toStartOf="@+id/view9"
+        app:layout_constraintTop_toTopOf="@+id/view9"
+        app:layout_constraintVertical_bias="0.617" />
+
     <View
         android:id="@+id/view2"
         android:layout_width="335dp"
@@ -43,11 +69,11 @@
         android:layout_height="148dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="176dp"
+        android:layout_marginBottom="156dp"
         android:background="@color/colorBackground"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.475"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -117,15 +143,12 @@
         android:id="@+id/add_type"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="90dp"
         android:layout_marginBottom="8dp"
         android:text="Bank name:"
         app:layout_constraintBottom_toBottomOf="@+id/view9"
         app:layout_constraintEnd_toEndOf="@+id/view2"
-        app:layout_constraintHorizontal_bias="0.042"
-        app:layout_constraintStart_toStartOf="@+id/view2"
-        app:layout_constraintTop_toTopOf="@+id/edit_destination4"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintHorizontal_bias="0.061"
+        app:layout_constraintStart_toStartOf="@+id/view2" />
 
     <TextView
         android:id="@+id/add_type2"
@@ -162,13 +185,13 @@
         app:layout_constraintHorizontal_bias="0.056"
         app:layout_constraintStart_toStartOf="@+id/view9"
         app:layout_constraintTop_toTopOf="@+id/view9"
-        app:layout_constraintVertical_bias="0.581" />
+        app:layout_constraintVertical_bias="0.51" />
 
     <Spinner
         android:id="@+id/accounts_spinner"
         android:layout_width="204dp"
         android:layout_height="wrap_content"
-        android:entries="@array/category_arrays"
+        android:entries="@array/type_arrays"
         android:spinnerMode="dropdown"
         app:layout_constraintBottom_toBottomOf="@+id/view2"
         app:layout_constraintEnd_toEndOf="@+id/view2"
@@ -176,6 +199,20 @@
         app:layout_constraintStart_toStartOf="@+id/view2"
         app:layout_constraintTop_toTopOf="@+id/view2"
         app:layout_constraintVertical_bias="0.773" />
+
+    <Spinner
+        android:id="@+id/accounts_spinner2"
+        android:layout_width="157dp"
+        android:layout_height="24dp"
+        android:layout_marginBottom="8dp"
+        android:entries="@array/occurrence_arrays"
+        android:spinnerMode="dropdown"
+        app:layout_constraintBottom_toBottomOf="@+id/view9"
+        app:layout_constraintEnd_toEndOf="@+id/view9"
+        app:layout_constraintHorizontal_bias="0.932"
+        app:layout_constraintStart_toStartOf="@+id/view9"
+        app:layout_constraintTop_toTopOf="@+id/view9"
+        app:layout_constraintVertical_bias="0.129" />
 
     <EditText
         android:id="@+id/edit_amount"
@@ -190,7 +227,7 @@
         app:layout_constraintTop_toTopOf="@+id/view11" />
 
     <Button
-        android:id="@+id/expense_add"
+        android:id="@+id/account_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -207,7 +244,7 @@
         app:layout_constraintVertical_bias="0.488" />
 
     <Button
-        android:id="@+id/expense_cancel"
+        android:id="@+id/account_cancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -232,22 +269,32 @@
         tools:layout_editor_absoluteY="115dp" />
 
     <EditText
-        android:id="@+id/edit_destination4"
-        android:layout_width="167dp"
-        android:layout_height="33dp"
+        android:id="@+id/income_amount"
+        android:layout_width="93dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="8dp"
         android:ems="10"
         android:inputType="textPersonName"
-        tools:layout_editor_absoluteX="194dp"
-        tools:layout_editor_absoluteY="228dp" />
+        android:text="Name"
+        app:layout_constraintBottom_toBottomOf="@+id/view9"
+        app:layout_constraintEnd_toEndOf="@+id/view9"
+        app:layout_constraintHorizontal_bias="0.384"
+        app:layout_constraintStart_toStartOf="@+id/view9"
+        app:layout_constraintTop_toTopOf="@+id/view9"
+        app:layout_constraintVertical_bias="0.543" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/bank_name"
         android:layout_width="133dp"
         android:layout_height="19dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Name"
-        tools:layout_editor_absoluteX="131dp"
-        tools:layout_editor_absoluteY="285dp" />
+        app:layout_constraintBottom_toBottomOf="@+id/view9"
+        app:layout_constraintEnd_toEndOf="@+id/view9"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="@+id/view9"
+        app:layout_constraintTop_toTopOf="@+id/view9"
+        app:layout_constraintVertical_bias="0.918" />
 
 </android.support.constraint.ConstraintLayout>

@@ -13,5 +13,19 @@
         <item>Education</item>
     </string-array>
 
+    <string-array name="type_arrays">
+        <item>Savings</item>
+        <item>Checking</item>
+        <item>Retirement</item>
+        <item>Rewards</item>
+    </string-array>
+
+    <string-array name="occurrence_arrays">
+        <item>Daily</item>
+        <item>Weekly</item>
+        <item>Fortnightly</item>
+        <item>Monthly</item>
+        <item>Yearly</item>
+    </string-array>
 
 </resources>

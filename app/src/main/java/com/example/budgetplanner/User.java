@@ -13,8 +13,8 @@ public class User implements Serializable {
     public String pin_code;
 
     //budget class declaration here
-    //account class declaration here
     public List<Expenses> expenses = new ArrayList();
+    public List<Accounts> accounts = new ArrayList();
 
     //public Boolean status;
     public String first_name;
