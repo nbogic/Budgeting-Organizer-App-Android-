@@ -284,7 +284,12 @@
         android:layout_height="33dp"
         android:ems="10"
         android:inputType="textPersonName"
-        tools:layout_editor_absoluteX="143dp"
-        tools:layout_editor_absoluteY="115dp" />
+        android:text="8"
+        app:layout_constraintBottom_toBottomOf="@+id/view2"
+        app:layout_constraintEnd_toEndOf="@+id/view2"
+        app:layout_constraintHorizontal_bias="0.671"
+        app:layout_constraintStart_toStartOf="@+id/view2"
+        app:layout_constraintTop_toTopOf="@+id/view2"
+        app:layout_constraintVertical_bias="0.181" />
 
 </android.support.constraint.ConstraintLayout>

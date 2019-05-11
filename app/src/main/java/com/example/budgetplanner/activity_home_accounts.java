@@ -57,7 +57,7 @@ public class activity_home_accounts extends AppCompatActivity implements View.On
         Intent intent = getIntent();
         //assign the returned object to the current user object
         user = (User)intent.getSerializableExtra("Home_User");
-       System.out.println("Details from home screen ----- username: " + user.user_name + "password: " + user.password + "email: " + user.email + "first name: " + user.first_name);
+    //   System.out.println("Details from home screen ----- username: " + user.user_name + "password: " + user.password + "email: " + user.email + "first name: " + user.first_name);
 
         accounts_home = (Button) findViewById(R.id.accounts_home);
         accounts_home.setOnClickListener(this);

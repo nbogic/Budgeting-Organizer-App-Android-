@@ -220,7 +220,6 @@
         android:layout_height="112dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="$0.00"
         app:layout_constraintBottom_toBottomOf="@+id/view11"
         app:layout_constraintEnd_toEndOf="@+id/view11"
         app:layout_constraintStart_toStartOf="@+id/view11"
@@ -262,20 +261,25 @@
     <EditText
         android:id="@+id/edit_destination"
         android:layout_width="201dp"
-        android:layout_height="33dp"
+        android:layout_height="39dp"
         android:ems="10"
         android:inputType="textPersonName"
-        tools:layout_editor_absoluteX="143dp"
-        tools:layout_editor_absoluteY="115dp" />
+        android:textSize="9sp"
+        app:layout_constraintBottom_toBottomOf="@+id/view2"
+        app:layout_constraintEnd_toEndOf="@+id/view2"
+        app:layout_constraintHorizontal_bias="0.85"
+        app:layout_constraintStart_toStartOf="@+id/view2"
+        app:layout_constraintTop_toTopOf="@+id/view2"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/income_amount"
         android:layout_width="93dp"
-        android:layout_height="25dp"
+        android:layout_height="44dp"
         android:layout_marginStart="8dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name"
+        android:textSize="8sp"
         app:layout_constraintBottom_toBottomOf="@+id/view9"
         app:layout_constraintEnd_toEndOf="@+id/view9"
         app:layout_constraintHorizontal_bias="0.384"
@@ -286,15 +290,28 @@
     <EditText
         android:id="@+id/bank_name"
         android:layout_width="133dp"
-        android:layout_height="19dp"
+        android:layout_height="31dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name"
+        android:textSize="8sp"
         app:layout_constraintBottom_toBottomOf="@+id/view9"
         app:layout_constraintEnd_toEndOf="@+id/view9"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="@+id/view9"
         app:layout_constraintTop_toTopOf="@+id/view9"
         app:layout_constraintVertical_bias="0.918" />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="$"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/view11"
+        app:layout_constraintEnd_toEndOf="@+id/view11"
+        app:layout_constraintHorizontal_bias="0.025"
+        app:layout_constraintStart_toStartOf="@+id/view11"
+        app:layout_constraintTop_toTopOf="@+id/view11" />
 
 </android.support.constraint.ConstraintLayout>

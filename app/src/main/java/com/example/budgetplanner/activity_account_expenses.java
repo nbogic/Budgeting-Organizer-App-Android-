@@ -25,10 +25,13 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import static java.lang.Boolean.FALSE;
+import static java.lang.Boolean.TRUE;
+
 public class activity_account_expenses extends AppCompatActivity implements View.OnClickListener {
 
     private static final String TAG = "activity_account_expenses";
-    private static final String login_file = "list_users.txt";
+    private static final String login_file = "/data/data/com.example.budgetplanner/files/list_users.txt";
 
     private DatePickerDialog.OnDateSetListener OnDateSetListener;
     private Button button_add_date;
@@ -65,16 +68,16 @@ public class activity_account_expenses extends AppCompatActivity implements View
                 String Cost = expense_amount.getText().toString();
 
                 //create the expense class now, which will later be added to the user's account
-                Expenses user_expense = new Expenses(expense_destination.getText().toString(), category_spinner.getSelectedItem().toString(), date, Boolean.TRUE, 3434);
+                Expenses user_expense = new Expenses(expense_destination.getText().toString(), category_spinner.getSelectedItem().toString(), date, TRUE, 3434);
                 //add to the inner attribute (list of expense objects)
                 user.expenses.add(user_expense);
                 //load and rewrite the file with the updated details
-                expenses_account_load(login_file, user_expense);
+                expenses_account_load(FALSE);
 
                 //return to the home activity
                 intent = new Intent(this, activity_home.class);
                 intent.putExtra("Home_User", user);
-                startActivity(intent);
+               // startActivity(intent);
                 break;
 
             case R.id.expense_cancel:
@@ -114,16 +117,17 @@ public class activity_account_expenses extends AppCompatActivity implements View
     }
 
     //write function, overwrites the entire file with a new list
-    public List<User> expenses_account_write(String File, List<User> new_user) {
+    public List<User> expenses_account_write(List<User> new_user) {
         //testing for feedback
-        System.out.println("Created!");
         FileOutputStream file_out;
-        java.io.File file = new File(getFilesDir(), File);
+        File file = new File(login_file);
         try {
             file_out = new FileOutputStream(file);
             ObjectOutputStream user_out = new ObjectOutputStream(file_out);
             user_out.writeObject(new_user);
+            user_out.flush();
             user_out.close();
+            expenses_account_load(TRUE);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -131,26 +135,37 @@ public class activity_account_expenses extends AppCompatActivity implements View
     }
 
     //modified reading function, made to overwrite the current file with the inclusion of a new expense object
-    public List<User> expenses_account_load(String file, Expenses exp) {
+    public List<User> expenses_account_load(Boolean READ) {
         System.out.println("test");
-        FileInputStream fis = null;
         List<User> exp_user_gen = new ArrayList<User>();
         try {
-            fis = openFileInput(file);
+            FileInputStream fis = new FileInputStream (new File(login_file));
             ObjectInputStream ooo = new ObjectInputStream(fis);
             exp_user_gen = (List<User>) ooo.readObject();
-
             //find matching account using username
+            if(READ.equals(false)) {
             for(int i = 0; i < exp_user_gen.size(); i++) {
-                if(user.user_name.equals(exp_user_gen.get(i).user_name)) {
+                if (user.user_name.equals(exp_user_gen.get(i).user_name)) {
                     //testing
-                    System.out.println("work: " + exp_user_gen.get(i).first_name);
-                    //match has been found, function now assigns the specific user account with the updated user created within this activity
+                    System.out.println("User in intent rn: "  + user.user_name + "vs" + exp_user_gen.get(i).user_name);
+                    exp_user_gen.get(i).user_name = user.user_name;
                     exp_user_gen.get(i).expenses = user.expenses;
+                    exp_user_gen.get(i).first_name = user.first_name;
+                    exp_user_gen.get(i).last_name = user.last_name;
+                    exp_user_gen.get(i).password = user.password;
 
                     //call for writing, updated list as a parameter
-                    expenses_account_write(login_file, exp_user_gen);
+                    expenses_account_write(exp_user_gen);
                     break;
+                }
+            } } else if (READ.equals(true)) {
+                for(int i = 0; i < exp_user_gen.size(); i++) {
+                    //testing will be removed later, lists all accounts and their expenses
+                        System.out.println("User [#"  + i + "]" + "-------" + "Username: " + exp_user_gen.get(i).user_name + "Password: " + exp_user_gen.get(i).password + "First name: " + exp_user_gen.get(i).first_name + "Last name: " + exp_user_gen.get(i).last_name + "Pincode: " + exp_user_gen.get(i).pin_code + "\n");
+                        for(int x = 0; x < exp_user_gen.get(i).expenses.size(); x++)
+                    System.out.println("User [#"  + i + "]" + "-------" + "Expense (Category) " + exp_user_gen.get(i).expenses.get(x).category + "Expense (Recurring): " + exp_user_gen.get(i).expenses.get(x).recurring + "Expense (Date): " + exp_user_gen.get(i).expenses.get(x).date + "Expense (Destination): " + exp_user_gen.get(i).expenses.get(x).destination + "------ \n"  );
+                        break;
+
                 }
             }
             ooo.close();
@@ -164,6 +179,7 @@ public class activity_account_expenses extends AppCompatActivity implements View
         }
         return exp_user_gen;
     }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

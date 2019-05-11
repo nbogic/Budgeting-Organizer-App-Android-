@@ -34,7 +34,7 @@ public class activity_account_create2 extends AppCompatActivity implements View.
     public List<User> intro_user = new ArrayList();
 
     //text files that will store a list of active users
-    private static final String login_file = "list_users.txt";
+    private static final String login_file = "/data/data/com.example.budgetplanner/files/list_users.txt";
 
     @Override
     public void onClick(View view) {

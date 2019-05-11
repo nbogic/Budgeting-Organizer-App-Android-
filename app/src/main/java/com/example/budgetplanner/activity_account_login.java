@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -19,7 +21,7 @@ public class activity_account_login extends AppCompatActivity implements View.On
     private String user_name;
     private String password;
 
-    private static final String login_file = "list_users.txt";
+    private static final String login_file = "/data/data/com.example.budgetplanner/files/list_users.txt";
     public List<User> return_user = new ArrayList<User>();
 
     @Override
@@ -30,7 +32,7 @@ public class activity_account_login extends AppCompatActivity implements View.On
         password = login_password.getText().toString();
         //testing
         System.out.println("You entered.... Username: " + user_name + " Password: " + password + "\n");
-        intro_account_load(login_file, user_name, password);
+        intro_account_load(user_name, password);
         for(int i = 0; i < return_user.size(); i++)  {
             //testing purposes, lists all accounts in the file
             System.out.println("Username: " +return_user.get(i).user_name);
@@ -41,22 +43,38 @@ public class activity_account_login extends AppCompatActivity implements View.On
             System.out.println("Pin: " + return_user.get(i).pin_code);
             //if a match is found, then the loop will break and a new user object will be attached to the intent
                 if(user_name.equals(return_user.get(i).user_name) || password.equals(return_user.get(i).password)) {
+                    User correct_user = new User();
                     Intent intent = new Intent(this, activity_home.class);
-                    User correct_user = new User(return_user.get(i).user_name, return_user.get(i).password, return_user.get(i).first_name, return_user.get(i).last_name, return_user.get(i).email, return_user.get(i).pin_code);
+                    if(return_user.get(i).expenses == null || return_user.get(i).accounts != null) {
+                        correct_user = new User(return_user.get(i).user_name, return_user.get(i).password, return_user.get(i).first_name, return_user.get(i).last_name, return_user.get(i).email, return_user.get(i).accounts, return_user.get(i).pin_code);
+                    } else if(return_user.get(i).accounts == null || return_user.get(i).expenses != null) {
+                        correct_user = new User(return_user.get(i).user_name, return_user.get(i).password, return_user.get(i).first_name, return_user.get(i).last_name, return_user.get(i).email, return_user.get(i).pin_code, return_user.get(i).expenses);
+                    } else if((return_user.get(i).accounts != null || return_user.get(i).expenses != null)) {
+                        correct_user = new User(return_user.get(i).user_name, return_user.get(i).password, return_user.get(i).first_name, return_user.get(i).last_name, return_user.get(i).email, return_user.get(i).pin_code, return_user.get(i).expenses, return_user.get(i).accounts);
+                    } else {
+                        correct_user = new User(return_user.get(i).user_name, return_user.get(i).password, return_user.get(i).first_name, return_user.get(i).last_name, return_user.get(i).email, return_user.get(i).pin_code);
+                    }
+
                     //send the created object to the main home screen
-                    intent.putExtra("User", correct_user);
+                    intent.putExtra("Home_User", correct_user);
                     startActivity(intent);
                 }
             }
-
     }
     //extended version of the loading function found in the account creation activity, takes two new parameters to test the user's input against what is stored in the file
-    public List<User> intro_account_load(String File, String inputted_user, String inputted_pass) {
-        FileInputStream fis = null;
+    public List<User> intro_account_load(String inputted_user, String inputted_pass) {
         try {
-            fis = openFileInput(File);
+            FileInputStream fis = new FileInputStream (new File(login_file));
             ObjectInputStream ooo = new ObjectInputStream(fis);
             return_user = (List<User>) ooo.readObject();
+            //testing will be removed later, lists all accounts and their expenses
+            for(int i = 0; i < return_user.size(); i++) {                     //testing
+                System.out.println("User [#"  + i + "]" + "-------" + "Username: " + return_user.get(i).user_name + "Password: " + return_user.get(i).password + "First name: " + return_user.get(i).first_name + "Last name: " + return_user.get(i).last_name + "Pincode: " + return_user.get(i).pin_code + "\n");
+                for(int x = 0; x < return_user.get(i).expenses.size(); x++)
+                    System.out.println("User [#"  + i + "]" + "-------" + "Expense (Category) " + return_user.get(i).expenses.get(x).category + "Expense (Recurring): " + return_user.get(i).expenses.get(x).recurring + "Expense (Date): " + return_user.get(i).expenses.get(x).date + "Expense (Destination): " + return_user.get(i).expenses.get(x).destination + "------ \n"  );
+                break;
+
+            }
             //exceptions
         } catch (FileNotFoundException e) {
             e.printStackTrace();

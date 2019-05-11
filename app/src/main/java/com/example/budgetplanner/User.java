@@ -31,13 +31,39 @@ public class User implements Serializable {
 
     }
 
-   // public User(String first_name, String last_name, String pin_code) {
-        /*offline user*/
+   public User(String u_user_name, String u_password, String u_pin_code, String u_first_name, String u_last_name, List<Accounts> u_accounts, String u_email) {
+       user_name = u_user_name;
+       password = u_password;
+       pin_code = u_pin_code;
+       first_name = u_first_name;
+       last_name = u_last_name;
+       email = u_email;
+       accounts = u_accounts;
 
-  //  }
+   }
 
-    //public User() {
-        /*testing purposes*/
-   // }
+    public User(String u_user_name, String u_password, String u_pin_code, String u_first_name, String u_last_name, String u_email, List<Expenses> u_expenses) {
+        user_name = u_user_name;
+        password = u_password;
+        pin_code = u_pin_code;
+        first_name = u_first_name;
+        last_name = u_last_name;
+        email = u_email;
+        expenses = u_expenses;
+    }
 
+    public User(String u_user_name, String u_password, String u_pin_code, String u_first_name, String u_last_name, String u_email, List<Expenses> u_expenses, List<Accounts> u_accounts) {
+        user_name = u_user_name;
+        password = u_password;
+        pin_code = u_pin_code;
+        first_name = u_first_name;
+        last_name = u_last_name;
+        email = u_email;
+        expenses = u_expenses;
+        accounts = u_accounts;
+    }
+
+    public User() {
+
+    }
 }

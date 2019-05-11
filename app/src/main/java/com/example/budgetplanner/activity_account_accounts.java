@@ -98,6 +98,10 @@ public class activity_account_accounts extends AppCompatActivity implements View
 
                 //return to the home activity
                 Intent intent;
+                for(int i = 0; i < user.accounts.size(); i++) {
+                System.out.println("Account name: " + user.accounts.get(i).account_name + "Account type: " +  user.accounts.get(i).account_type + "Income amount: " + user.accounts.get(i).income_bankname + "Account balance: " + user.accounts.get(i).account_balance); }
+
+
                 intent = new Intent(this, activity_home.class);
                 intent.putExtra("Home_User", user);
                 startActivity(intent);
@@ -136,7 +140,6 @@ public class activity_account_accounts extends AppCompatActivity implements View
             for(int i = 0; i < exp_user_gen.size(); i++) {
                 if(user.user_name.equals(exp_user_gen.get(i).user_name)) {
                     //testing
-                    System.out.println("work: " + exp_user_gen.get(i).first_name);
                     //match has been found, function now assigns the specific user account with the updated user created within this activity
                     exp_user_gen.get(i).expenses = user.expenses;
 
