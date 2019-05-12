@@ -112,4 +112,12 @@
 - Good progress. Glad to see it's getting closer. Final stretch now. 
 - Make sure you go over everything in the Grading Criteria super carefully, to ensure you meet each point.
 
+## 11/05/2019
+- budget class updated with correct attributes and methods, multiple constructors added to user class
+- updated expense write method to have a read only option (parameter) to list all user expenses
+- account loading: the user class that is added on the first intent pass is now created based on multiple conditions to avoid null errors
+- fixed bug where login activity was not receiving the updated user account from the file
+
+## 12/05/2019
+- spinners display the user's expenses and accounts in the budget activity: method created to load accounts/expenses objects into empty spinners
 
