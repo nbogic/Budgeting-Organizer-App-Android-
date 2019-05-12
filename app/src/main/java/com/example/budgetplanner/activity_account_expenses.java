@@ -77,10 +77,10 @@ public class activity_account_expenses extends AppCompatActivity implements View
                 //return to the home activity
                 intent = new Intent(this, activity_home.class);
                 intent.putExtra("Home_User", user);
-               // startActivity(intent);
+                startActivity(intent);
                 break;
 
-            case R.id.expense_cancel:
+            case R.id.budget_cancel:
                 //no changes have occurred, return to the home screen
                 intent = new Intent(this, activity_home.class);
                 startActivity(intent);
@@ -194,7 +194,7 @@ public class activity_account_expenses extends AppCompatActivity implements View
         button_add = (Button) findViewById(R.id.expense_add);
         button_add.setOnClickListener(this);
 
-        button_cancel = (Button) findViewById(R.id.expense_cancel);
+        button_cancel = (Button) findViewById(R.id.budget_cancel);
         button_cancel.setOnClickListener(this);
 
         add_date2 = (TextView) findViewById(R.id.add_date2);
