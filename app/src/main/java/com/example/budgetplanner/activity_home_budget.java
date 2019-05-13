@@ -6,7 +6,19 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.util.ArrayList;
+import java.util.List;
+
+import static java.lang.Boolean.TRUE;
+
 public class activity_home_budget extends AppCompatActivity implements View.OnClickListener {
+
+    private static final String login_file = "/data/data/com.example.budgetplanner/files/list_users.txt";
 
     //budget layout buttons
     private Button budget_home;
@@ -48,6 +60,7 @@ public class activity_home_budget extends AppCompatActivity implements View.OnCl
                 break;
         }
     }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

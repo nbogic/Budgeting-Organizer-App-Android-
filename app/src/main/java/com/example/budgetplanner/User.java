@@ -15,19 +15,22 @@ public class User implements Serializable {
     //budget class declaration here
     public List<Expenses> expenses = new ArrayList();
     public List<Accounts> accounts = new ArrayList();
+    public List<Budget> budgets = new ArrayList();
 
     //public Boolean status;
     public String first_name;
     public String last_name;
     public String email;
 
-    public User(String u_user_name, String u_password, String u_pin_code, String u_first_name, String u_last_name, String u_email) {
+    public User(String u_user_name, String u_password, String u_pin_code, String u_first_name, String u_last_name, String u_email, List<Expenses> u_expenses, List<Accounts> u_accounts) {
         user_name = u_user_name;
         password = u_password;
         pin_code = u_pin_code;
         first_name = u_first_name;
         last_name = u_last_name;
         email = u_email;
+        expenses = u_expenses;
+        accounts = u_accounts;
 
     }
 
@@ -42,26 +45,15 @@ public class User implements Serializable {
 
    }
 
-    public User(String u_user_name, String u_password, String u_pin_code, String u_first_name, String u_last_name, String u_email, List<Expenses> u_expenses) {
+    public User(String u_user_name, String u_password, String u_pin_code, String u_first_name, String u_last_name, String u_email) {
         user_name = u_user_name;
         password = u_password;
         pin_code = u_pin_code;
         first_name = u_first_name;
         last_name = u_last_name;
         email = u_email;
-        expenses = u_expenses;
     }
 
-    public User(String u_user_name, String u_password, String u_pin_code, String u_first_name, String u_last_name, String u_email, List<Expenses> u_expenses, List<Accounts> u_accounts) {
-        user_name = u_user_name;
-        password = u_password;
-        pin_code = u_pin_code;
-        first_name = u_first_name;
-        last_name = u_last_name;
-        email = u_email;
-        expenses = u_expenses;
-        accounts = u_accounts;
-    }
 
     public User() {
 

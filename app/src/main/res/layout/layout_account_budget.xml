@@ -226,6 +226,7 @@
         android:layout_height="25dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="32dp"
+        android:background="@color/colorBackground2"
         app:layout_constraintBottom_toBottomOf="@+id/view2"
         app:layout_constraintEnd_toStartOf="@+id/view33"
         app:layout_constraintStart_toStartOf="@+id/view2"
@@ -236,6 +237,7 @@
         android:id="@+id/budget_addaccount"
         android:layout_width="144dp"
         android:layout_height="25dp"
+        android:background="@color/colorBackground2"
         app:layout_constraintBottom_toBottomOf="@+id/view33"
         app:layout_constraintEnd_toEndOf="@+id/view33"
         app:layout_constraintHorizontal_bias="0.487"
@@ -255,11 +257,12 @@
         app:layout_constraintStart_toStartOf="@+id/view10" />
 
     <EditText
-        android:id="@+id/editText4"
+        android:id="@+id/budget_duration"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
+        android:text="233"
         android:textSize="8sp"
         app:layout_constraintBottom_toBottomOf="@+id/view10"
         app:layout_constraintEnd_toEndOf="@+id/view10"
@@ -288,6 +291,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
+        android:text="Enter amount here"
         app:layout_constraintBottom_toBottomOf="@+id/view34"
         app:layout_constraintEnd_toEndOf="@+id/view34"
         app:layout_constraintHorizontal_bias="0.095"
@@ -295,23 +299,65 @@
         app:layout_constraintTop_toTopOf="@+id/view34"
         app:layout_constraintVertical_bias="0.514" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="146dp"
-        android:layout_height="76dp"
+    <ListView
+        android:id="@+id/list_expenses"
+        android:layout_width="155dp"
+        android:layout_height="66dp"
         app:layout_constraintBottom_toBottomOf="@+id/view2"
         app:layout_constraintEnd_toEndOf="@+id/view2"
-        app:layout_constraintHorizontal_bias="0.461"
+        app:layout_constraintHorizontal_bias="0.433"
         app:layout_constraintStart_toStartOf="@+id/view2"
         app:layout_constraintTop_toTopOf="@+id/view2"
-        app:layout_constraintVertical_bias="0.775" />
+        app:layout_constraintVertical_bias="0.797" />
 
-    <android.support.v7.widget.RecyclerView
-        android:layout_width="143dp"
-        android:layout_height="68dp"
+    <ListView
+        android:id="@+id/list_accounts"
+        android:layout_width="151dp"
+        android:layout_height="70dp"
         app:layout_constraintBottom_toBottomOf="@+id/view33"
         app:layout_constraintEnd_toEndOf="@+id/view33"
+        app:layout_constraintHorizontal_bias="0.382"
         app:layout_constraintStart_toStartOf="@+id/view33"
         app:layout_constraintTop_toTopOf="@+id/view33"
-        app:layout_constraintVertical_bias="0.793" />
+        app:layout_constraintVertical_bias="0.831" />
+
+    <Button
+        android:id="@+id/budget_clear"
+        android:layout_width="61dp"
+        android:layout_height="35dp"
+        android:text="Clear"
+        android:textSize="8sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/view2"
+        app:layout_constraintEnd_toEndOf="@+id/view2"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/view2"
+        app:layout_constraintTop_toTopOf="@+id/view2"
+        app:layout_constraintVertical_bias="0.069" />
+
+    <Button
+        android:id="@+id/budget_clear2"
+        android:layout_width="61dp"
+        android:layout_height="35dp"
+        android:text="Clear"
+        android:textSize="8sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/view33"
+        app:layout_constraintEnd_toEndOf="@+id/view33"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/view33"
+        app:layout_constraintTop_toTopOf="@+id/view33"
+        app:layout_constraintVertical_bias="0.069" />
+
+    <TextView
+        android:id="@+id/textView28"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Duration"
+        app:layout_constraintBottom_toBottomOf="@+id/view10"
+        app:layout_constraintEnd_toEndOf="@+id/view10"
+        app:layout_constraintHorizontal_bias="0.049"
+        app:layout_constraintStart_toStartOf="@+id/view10"
+        app:layout_constraintTop_toTopOf="@+id/view10"
+        app:layout_constraintVertical_bias="0.224" />
 </android.support.constraint.ConstraintLayout>

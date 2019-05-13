@@ -20,6 +20,8 @@ public class activity_account_login extends AppCompatActivity implements View.On
     private Button login_signin;
     private String user_name;
     private String password;
+    private User correct_user;
+
 
     private static final String login_file = "/data/data/com.example.budgetplanner/files/list_users.txt";
     public List<User> return_user = new ArrayList<User>();
@@ -43,24 +45,16 @@ public class activity_account_login extends AppCompatActivity implements View.On
             System.out.println("Pin: " + return_user.get(i).pin_code);
             //if a match is found, then the loop will break and a new user object will be attached to the intent
                 if(user_name.equals(return_user.get(i).user_name) || password.equals(return_user.get(i).password)) {
-                    User correct_user = new User();
-                    Intent intent = new Intent(this, activity_home.class);
-                    if(return_user.get(i).expenses == null || return_user.get(i).accounts != null) {
-                        correct_user = new User(return_user.get(i).user_name, return_user.get(i).password, return_user.get(i).first_name, return_user.get(i).last_name, return_user.get(i).email, return_user.get(i).accounts, return_user.get(i).pin_code);
-                    } else if(return_user.get(i).accounts == null || return_user.get(i).expenses != null) {
-                        correct_user = new User(return_user.get(i).user_name, return_user.get(i).password, return_user.get(i).first_name, return_user.get(i).last_name, return_user.get(i).email, return_user.get(i).pin_code, return_user.get(i).expenses);
-                    } else if((return_user.get(i).accounts != null || return_user.get(i).expenses != null)) {
-                        correct_user = new User(return_user.get(i).user_name, return_user.get(i).password, return_user.get(i).first_name, return_user.get(i).last_name, return_user.get(i).email, return_user.get(i).pin_code, return_user.get(i).expenses, return_user.get(i).accounts);
-                    } else {
-                        correct_user = new User(return_user.get(i).user_name, return_user.get(i).password, return_user.get(i).first_name, return_user.get(i).last_name, return_user.get(i).email, return_user.get(i).pin_code);
+                        correct_user = return_user.get(i);
                     }
-
+                     Intent intent = new Intent(this, activity_home.class);
                     //send the created object to the main home screen
                     intent.putExtra("Home_User", correct_user);
                     startActivity(intent);
                 }
             }
-    }
+
+
     //extended version of the loading function found in the account creation activity, takes two new parameters to test the user's input against what is stored in the file
     public List<User> intro_account_load(String inputted_user, String inputted_pass) {
         try {
@@ -73,7 +67,6 @@ public class activity_account_login extends AppCompatActivity implements View.On
                 for(int x = 0; x < return_user.get(i).expenses.size(); x++)
                     System.out.println("User [#"  + i + "]" + "-------" + "Expense (Category) " + return_user.get(i).expenses.get(x).category + "Expense (Recurring): " + return_user.get(i).expenses.get(x).recurring + "Expense (Date): " + return_user.get(i).expenses.get(x).date + "Expense (Destination): " + return_user.get(i).expenses.get(x).destination + "------ \n"  );
                 break;
-
             }
             //exceptions
         } catch (FileNotFoundException e) {

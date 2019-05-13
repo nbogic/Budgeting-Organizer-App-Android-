@@ -74,13 +74,14 @@ public class activity_home extends AppCompatActivity implements View.OnClickList
             home_name.setText("Welcome back!");
         } else { home_name.setText("Welcome back " + user.first_name + "!"); }
 
-        for(int i = 0; i < user.accounts.size(); i++) {
+        /*for(int i = 0; i < user.accounts.size(); i++) {
             System.out.println("Account name: " + user.accounts.get(i).account_name + "Account type: " +  user.accounts.get(i).account_type + "Income amount: " + user.accounts.get(i).income_bankname + "Account balance: " + user.accounts.get(i).account_balance); }
 
         for(int i = 0; i < user.expenses.size(); i++) {
             System.out.println("Category: " + user.expenses.get(i).category + "Recurring?: " +  user.expenses.get(i).recurring + "Destination: " + user.expenses.get(i).destination + "Date: " + user.expenses.get(i).date); }
 
-//        System.out.println("Category: " + user.expenses.get(0).category + "Recurring?: " +  user.expenses.get(0).recurring + "Destination: " + user.expenses.get(0).destination + "Date: " + user.expenses.get(0).date);
+//      */  //System.out.println("Category: " + user.expenses.get(0).category + "Recurring?: " +  user.expenses.get(0).recurring + "Destination: " + user.expenses.get(0).destination + "Date: " + user.expenses.get(0).date);
+
         //linking buttons to their respective ids
         home = (Button) findViewById(R.id.home);
         home.setOnClickListener(this);

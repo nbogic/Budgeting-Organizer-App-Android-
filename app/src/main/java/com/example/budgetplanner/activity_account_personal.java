@@ -89,7 +89,6 @@ public class activity_account_personal extends AppCompatActivity implements View
 
         System.out.println("Details from home screen ----- username: " + home_user.user_name + "password: " + home_user.password + "email: " + home_user.email + "first name: " + home_user.first_name);
 
-
         //include all the user's current details in the textviews
         personal_first_name.setText("First name: " + home_user.first_name);
         personal_last_name.setText("Last name: " + home_user.last_name);

@@ -52,7 +52,7 @@ public class activity_account_create2 extends AppCompatActivity implements View.
                 first_name = intro_firstname.getText().toString();
                 last_name = intro_lastname.getText().toString();
 
-                intent = new Intent(this, activity_home.class);
+                intent = new Intent(this, activity_intro.class);
                 intro_account_create();
                 startActivity(intent);
                 break;
@@ -70,11 +70,11 @@ public class activity_account_create2 extends AppCompatActivity implements View.
 
     //writes the created user object into a file in the form of a list
     //returns the aforementioned list as a return type to ensure the function has multiple uses/purposes
-    public List<User> intro_account_write(String File) {
+    public List<User> intro_account_write() {
         //testing for feedback
         System.out.println("Created!");
         FileOutputStream file_out;
-        File file = new File(getFilesDir(), File);
+        File file = new File(login_file);
         try {
             file_out = new FileOutputStream(file);
             ObjectOutputStream user_out = new ObjectOutputStream(file_out);
@@ -97,11 +97,11 @@ public class activity_account_create2 extends AppCompatActivity implements View.
         if (intro_account_validate(user_name, password, pin_code, first_name, last_name, email).equals(true)) {
             User user = new User(user_name, password, pin_code, first_name, last_name, email);
             intro_user.add(user);
-            intro_account_write(login_file);
+            intro_account_write();
 
             //testing for feedback
-            System.out.println("Following details - User name " + user.user_name + "Password " + user.password + "Email " + user.email + "First name: " + user.first_name + "Last name: " + user.last_name);
-            System.out.println("Following details from intro_user - User name " + intro_user.get(0).user_name + "Password " + intro_user.get(0).password + "Email " + intro_user.get(0).email + "First name: " + intro_user.get(0).first_name + "Last name: " + intro_user.get(0).last_name);
+          //  System.out.println("Following details - User name " + user.user_name + "Password " + user.password + "Email " + user.email + "First name: " + user.first_name + "Last name: " + user.last_name);
+         //   System.out.println("Following details from intro_user - User name " + intro_user.get(0).user_name + "Password " + intro_user.get(0).password + "Email " + intro_user.get(0).email + "First name: " + intro_user.get(0).first_name + "Last name: " + intro_user.get(0).last_name);
             return true;
         } else {
             return false;
@@ -149,11 +149,10 @@ public class activity_account_create2 extends AppCompatActivity implements View.
 
     //loads the object list from the account file
     //return type is the inner function created list, only used within this activity
-    public List<User> intro_account_load(String File) {
-        FileInputStream fis = null;
+    public List<User> intro_account_load() {
         List<User> user_gen = new ArrayList<User>();
         try {
-            fis = openFileInput(File);
+            FileInputStream fis = new FileInputStream (new File(login_file));
             ObjectInputStream ooo = new ObjectInputStream(fis);
             user_gen = (List<User>) ooo.readObject();
             ooo.close();
@@ -176,7 +175,7 @@ public class activity_account_create2 extends AppCompatActivity implements View.
 
         //assigns intro_user to the latest version of the file
         //this is to avoid data loss/overwriting when the application is exited, it will retain user details
-        intro_user = intro_account_load(login_file);
+        intro_user = intro_account_load();
 
         //get the username, password, and email that was saved in the previous activity
         //assign it to the appropriate strings, which are later used in the object's (user) creation

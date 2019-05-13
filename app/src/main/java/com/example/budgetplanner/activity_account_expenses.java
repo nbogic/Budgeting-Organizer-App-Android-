@@ -165,7 +165,6 @@ public class activity_account_expenses extends AppCompatActivity implements View
                         for(int x = 0; x < exp_user_gen.get(i).expenses.size(); x++)
                     System.out.println("User [#"  + i + "]" + "-------" + "Expense (Category) " + exp_user_gen.get(i).expenses.get(x).category + "Expense (Recurring): " + exp_user_gen.get(i).expenses.get(x).recurring + "Expense (Date): " + exp_user_gen.get(i).expenses.get(x).date + "Expense (Destination): " + exp_user_gen.get(i).expenses.get(x).destination + "------ \n"  );
                         break;
-
                 }
             }
             ooo.close();
