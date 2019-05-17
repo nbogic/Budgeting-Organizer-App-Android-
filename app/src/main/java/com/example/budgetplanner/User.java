@@ -15,7 +15,7 @@ public class User implements Serializable {
     //budget class declaration here
     public List<Expenses> expenses = new ArrayList();
     public List<Accounts> accounts = new ArrayList();
-    public List<Budget> budgets = new ArrayList();
+    public List<Budget> budgets;
 
     //public Boolean status;
     public String first_name;
@@ -32,6 +32,8 @@ public class User implements Serializable {
         expenses = u_expenses;
         accounts = u_accounts;
 
+        budgets = new ArrayList<Budget>();
+
     }
 
    public User(String u_user_name, String u_password, String u_pin_code, String u_first_name, String u_last_name, List<Accounts> u_accounts, String u_email) {
@@ -43,6 +45,9 @@ public class User implements Serializable {
        email = u_email;
        accounts = u_accounts;
 
+       budgets = new ArrayList<Budget>();
+
+
    }
 
     public User(String u_user_name, String u_password, String u_pin_code, String u_first_name, String u_last_name, String u_email) {
@@ -52,6 +57,9 @@ public class User implements Serializable {
         first_name = u_first_name;
         last_name = u_last_name;
         email = u_email;
+
+        budgets = new ArrayList<Budget>();
+
     }
 
 

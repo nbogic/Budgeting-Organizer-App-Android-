@@ -1,9 +1,13 @@
 package com.example.budgetplanner;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Budget {
+public class Budget implements Serializable {
+
+    private static final long serialVersionUID = -426918219129328097L;
+
     public String name;
     public String duration;
     public String date;

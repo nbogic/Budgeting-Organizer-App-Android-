@@ -62,6 +62,8 @@ public class activity_account_login extends AppCompatActivity implements View.On
             ObjectInputStream ooo = new ObjectInputStream(fis);
             return_user = (List<User>) ooo.readObject();
             //testing will be removed later, lists all accounts and their expenses
+
+
             for(int i = 0; i < return_user.size(); i++) {                     //testing
                 System.out.println("User [#"  + i + "]" + "-------" + "Username: " + return_user.get(i).user_name + "Password: " + return_user.get(i).password + "First name: " + return_user.get(i).first_name + "Last name: " + return_user.get(i).last_name + "Pincode: " + return_user.get(i).pin_code + "\n");
                 for(int x = 0; x < return_user.get(i).expenses.size(); x++)

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_intro_temporary"
+    android:background="@drawable/background_2"
     tools:context=".activity_account_expenses">
 
     <View
@@ -137,30 +137,6 @@
         app:layout_constraintVertical_bias="0.812" />
 
     <TextView
-        android:id="@+id/add_destination"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Destination:"
-        app:layout_constraintBottom_toBottomOf="@+id/view2"
-        app:layout_constraintEnd_toEndOf="@+id/view2"
-        app:layout_constraintHorizontal_bias="0.054"
-        app:layout_constraintStart_toStartOf="@+id/view2"
-        app:layout_constraintTop_toTopOf="@+id/view2"
-        app:layout_constraintVertical_bias="0.224" />
-
-    <TextView
-        android:id="@+id/add_destination2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Category:"
-        app:layout_constraintBottom_toBottomOf="@+id/view2"
-        app:layout_constraintEnd_toEndOf="@+id/view2"
-        app:layout_constraintHorizontal_bias="0.051"
-        app:layout_constraintStart_toStartOf="@+id/view2"
-        app:layout_constraintTop_toTopOf="@+id/view2"
-        app:layout_constraintVertical_bias="0.706" />
-
-    <TextView
         android:id="@+id/add_recurring"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -182,60 +158,6 @@
         app:layout_constraintStart_toStartOf="@+id/view9"
         app:layout_constraintTop_toTopOf="@+id/view9"
         app:layout_constraintVertical_bias="0.365" />
-
-    <TextView
-        android:id="@+id/add_account"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="From which account?:"
-        app:layout_constraintBottom_toBottomOf="@+id/view10"
-        app:layout_constraintEnd_toEndOf="@+id/view10"
-        app:layout_constraintHorizontal_bias="0.071"
-        app:layout_constraintStart_toStartOf="@+id/view10"
-        app:layout_constraintTop_toTopOf="@+id/view10"
-        app:layout_constraintVertical_bias="0.172" />
-
-    <Spinner
-        android:id="@+id/expense_spinner2"
-        android:layout_width="204dp"
-        android:layout_height="wrap_content"
-        android:entries="@array/category_arrays"
-        android:spinnerMode="dropdown"
-        app:layout_constraintBottom_toBottomOf="@+id/view2"
-        app:layout_constraintEnd_toEndOf="@+id/view2"
-        app:layout_constraintHorizontal_bias="0.778"
-        app:layout_constraintStart_toStartOf="@+id/view2"
-        app:layout_constraintTop_toTopOf="@+id/view2"
-        app:layout_constraintVertical_bias="0.773" />
-
-    <EditText
-        android:id="@+id/edit_amount"
-        android:layout_width="311dp"
-        android:layout_height="112dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="$0.00"
-        app:layout_constraintBottom_toBottomOf="@+id/view11"
-        app:layout_constraintEnd_toEndOf="@+id/view11"
-        app:layout_constraintStart_toStartOf="@+id/view11"
-        app:layout_constraintTop_toTopOf="@+id/view11" />
-
-    <Button
-        android:id="@+id/expense_add"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:onClick="onClick"
-        android:text="ADD"
-        app:layout_constraintBottom_toTopOf="@+id/view2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.902"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.488" />
 
     <Button
         android:id="@+id/budget_cancel"
@@ -277,19 +199,5 @@
         app:layout_constraintStart_toStartOf="@+id/view9"
         app:layout_constraintTop_toTopOf="@+id/view9"
         app:layout_constraintVertical_bias="0.86" />
-
-    <EditText
-        android:id="@+id/edit_destination"
-        android:layout_width="201dp"
-        android:layout_height="33dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="8"
-        app:layout_constraintBottom_toBottomOf="@+id/view2"
-        app:layout_constraintEnd_toEndOf="@+id/view2"
-        app:layout_constraintHorizontal_bias="0.671"
-        app:layout_constraintStart_toStartOf="@+id/view2"
-        app:layout_constraintTop_toTopOf="@+id/view2"
-        app:layout_constraintVertical_bias="0.181" />
 
 </android.support.constraint.ConstraintLayout>

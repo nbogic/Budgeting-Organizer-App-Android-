@@ -72,9 +72,9 @@ public class activity_account_budget extends AppCompatActivity implements View.O
                 budget_amount = (EditText) findViewById(R.id.budget_amount);;
 
                 Budget user_budget = new Budget("this is name", "this is duration", "hjjhhj", "this is amount", "np");
-              /*  for(int i = 0; i < list_expense_items.size(); i++) {
+                for(int i = 0; i < list_expense_items.size(); i++) {
                     if(user.expenses.get(i).destination.equals(list_expense_items.get(i)))
-                        System.out.println("Expense has been added:");
+                        System.out.println("Expense has been added:" + user.expenses.get(i).destination);
 
                     user_budget.add_expense(user.expenses.get(i));
                 }
@@ -82,23 +82,15 @@ public class activity_account_budget extends AppCompatActivity implements View.O
                 for(int i = 0; i < list_account_items.size(); i++) {
                     if(user.accounts.get(i).account_name.equals(list_account_items.get(i)))
                         user_budget.add_account(user.accounts.get(i));
-                    System.out.println("acc has been added:");
+                    System.out.println("acc has been added:" + user.accounts.get(i).account_name);
 
                 }
-                */
+
                 user.budgets.add(user_budget);
-             System.out.println("Budget accounts - account name: " + user_budget.name);
-                System.out.println("Budget accounts - account namewww: " + user_budget.expenses.get(0).destination);
-
-
+                budgets_account_load();
                 intent = new Intent(this, activity_home.class);
                 intent.putExtra("Home_User", user);
-//                for(int i = 0; i < user.budgets.size(); i++) {
-                 //   System.out.println("Budget accounts - account name: " + user.budgets.get(i).accounts.get(i).account_name);
-
-              //  }
-
-               // startActivity(intent);
+                startActivity(intent);
                 break;
 
             case R.id.budget_cancel:
@@ -119,6 +111,55 @@ public class activity_account_budget extends AppCompatActivity implements View.O
 
         }
     }
+
+    public List<User> budgets_account_write(List<User> new_user) {
+        //testing for feedback
+        System.out.println("Created!");
+        FileOutputStream file_out;
+        File file = new File(login_file);
+        try {
+            file_out = new FileOutputStream(file);
+            ObjectOutputStream user_out = new ObjectOutputStream(file_out);
+            user_out.writeObject(new_user);
+            user_out.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return new_user;
+    }
+
+    //modified reading function, made to overwrite the current file with the inclusion of a new expense object
+    public List<User> budgets_account_load() {
+        List<User> exp_user_gen = new ArrayList<User>();
+        try {
+            FileInputStream fis = new FileInputStream (new File(login_file));
+            ObjectInputStream ooo = new ObjectInputStream(fis);
+            exp_user_gen = (List<User>) ooo.readObject();
+
+            //find matching account using username
+            for(int i = 0; i < exp_user_gen.size(); i++) {
+                if(user.user_name.equals(exp_user_gen.get(i).user_name)) {
+                    //testing
+                    //match has been found, function now assigns the specific user account with the updated user created within this activity
+                    exp_user_gen.get(i).budgets = user.budgets;
+
+                    //call for writing, updated list as a parameter
+                    budgets_account_write(exp_user_gen);
+                    break;
+                }
+            }
+            ooo.close();
+            //exceptions
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return exp_user_gen;
+    }
+
 
 
     @Override

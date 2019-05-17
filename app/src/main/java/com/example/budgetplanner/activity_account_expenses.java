@@ -61,7 +61,7 @@ public class activity_account_expenses extends AppCompatActivity implements View
                 //initialise widgets
                 expense_amount = (EditText) findViewById(R.id.edit_amount);;
                 expense_destination = (EditText) findViewById(R.id.edit_destination);
-                category_spinner = (Spinner) findViewById(R.id.expense_spinner2);
+               // category_spinner = (Spinner) findViewById(R.id.expense_spinner2);
                 expense_recurring = (Switch) findViewById(R.id.switch_recurring);
 
                 //get the expense amount, convert to string

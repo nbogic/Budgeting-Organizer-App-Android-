@@ -30,8 +30,8 @@ import static android.view.View.VISIBLE;
 
 public class activity_account_accounts extends AppCompatActivity implements View.OnClickListener  {
 
-    private static final String TAG = "activity_account_expenses";
-    private static final String login_file = "list_users.txt";
+    private static final String TAG = "activity_account_accounts";
+    private static final String login_file = "/data/data/com.example.budgetplanner/files/list_users.txt";
     private DatePickerDialog.OnDateSetListener OnDateSetListener;
 
     private TextView add_date3;
@@ -94,14 +94,12 @@ public class activity_account_accounts extends AppCompatActivity implements View
 
                 Accounts user_account = new Accounts(account_name.getText().toString(), account_spinner.getSelectedItem().toString(), selection, account_balance.getText().toString(), bank_name.getText().toString());
                 user.accounts.add(user_account);
-                accounts_account_load(login_file, user_account);
+                accounts_account_load(user_account);
 
                 //return to the home activity
                 Intent intent;
                 for(int i = 0; i < user.accounts.size(); i++) {
                 System.out.println("Account name: " + user.accounts.get(i).account_name + "Account type: " +  user.accounts.get(i).account_type + "Income amount: " + user.accounts.get(i).income_bankname + "Account balance: " + user.accounts.get(i).account_balance); }
-
-
                 intent = new Intent(this, activity_home.class);
                 intent.putExtra("Home_User", user);
                 startActivity(intent);
@@ -111,11 +109,11 @@ public class activity_account_accounts extends AppCompatActivity implements View
     }
 
     //write function, overwrites the entire file with a new list
-    public List<User> accounts_account_write(String File, List<User> new_user) {
+    public List<User> accounts_account_write(List<User> new_user) {
         //testing for feedback
         System.out.println("Created!");
         FileOutputStream file_out;
-        java.io.File file = new File(getFilesDir(), File);
+        File file = new File(login_file);
         try {
             file_out = new FileOutputStream(file);
             ObjectOutputStream user_out = new ObjectOutputStream(file_out);
@@ -128,11 +126,10 @@ public class activity_account_accounts extends AppCompatActivity implements View
     }
 
     //modified reading function, made to overwrite the current file with the inclusion of a new expense object
-    public List<User> accounts_account_load(String file, Accounts exp) {
-        FileInputStream fis = null;
+    public List<User> accounts_account_load(Accounts acc) {
         List<User> exp_user_gen = new ArrayList<User>();
         try {
-            fis = openFileInput(file);
+            FileInputStream fis = new FileInputStream (new File(login_file));
             ObjectInputStream ooo = new ObjectInputStream(fis);
             exp_user_gen = (List<User>) ooo.readObject();
 
@@ -141,10 +138,10 @@ public class activity_account_accounts extends AppCompatActivity implements View
                 if(user.user_name.equals(exp_user_gen.get(i).user_name)) {
                     //testing
                     //match has been found, function now assigns the specific user account with the updated user created within this activity
-                    exp_user_gen.get(i).expenses = user.expenses;
+                    exp_user_gen.get(i).accounts = user.accounts;
 
                     //call for writing, updated list as a parameter
-                    accounts_account_write(login_file, exp_user_gen);
+                    accounts_account_write(exp_user_gen);
                     break;
                 }
             }
@@ -159,6 +156,8 @@ public class activity_account_accounts extends AppCompatActivity implements View
         }
         return exp_user_gen;
     }
+
+
 
 
     @Override

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.text.Layout;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.io.Serializable;
@@ -13,12 +14,22 @@ import java.io.Serializable;
 public class activity_home extends AppCompatActivity implements View.OnClickListener, Serializable {
 
     //home layout buttons
-    private Button home;
+    private ImageButton home;
     private Button home_profile;
-    private Button home_expenses;
-    private Button home_accounts;
-    private Button home_budget;
+    private ImageButton home_expenses;
+    private ImageButton home_accounts;
+    private ImageButton home_budget;
     private TextView home_name;
+
+    private TextView expense_count;
+    private TextView expense_total;
+
+    private TextView account_count;
+    private TextView account_total;
+
+    private TextView budget_count;
+    private TextView budget_total;
+
 
     private User user;
 
@@ -70,11 +81,54 @@ public class activity_home extends AppCompatActivity implements View.OnClickList
         user = (User)intent.getSerializableExtra("Home_User");
         //change the TextView to display the user's first name using the new user object, welcome message
         home_name = (TextView) findViewById(R.id.home_name);
+        expense_count = (TextView) findViewById(R.id.expense_number);
+        expense_total = (TextView) findViewById(R.id.expense_number2);
+        account_count =  (TextView) findViewById(R.id.account_number);
+        account_total = (TextView) findViewById(R.id.account_number2);
+        budget_count = (TextView) findViewById(R.id.budget_number);
+        budget_total = (TextView) findViewById(R.id.budget_number2);
+
+        if(user.expenses != null) {
+            int mExpenses = user.expenses.size();
+            long mExp_Total = 0;
+
+            expense_count.setText(mExpenses + " expenses");
+            for (int i = 0; i < user.expenses.size(); i++) {
+                mExp_Total = user.expenses.get(i).cost + mExp_Total;
+            }
+            expense_total.setText("$" + String.valueOf(mExp_Total));
+        } else {
+            expense_count.setText("Go create some expenses!");
+            expense_total.setText("");
+
+        }
+
+        if(user.accounts != null) {
+            int mAccounts = user.accounts.size();
+            long mAcc_Total = 0;
+            for(int i = 0; i < user.accounts.size(); i++) {
+                mAcc_Total = Long.valueOf(user.accounts.get(i).account_balance) + mAcc_Total;
+            }
+            account_count.setText(mAccounts + " accounts");
+            account_total.setText("$" + mAcc_Total);
+        }
+
+        if(user.budgets != null) {
+            int mBudgets = user.budgets.size();
+            budget_count.setText(mBudgets + " budgets");
+            long mBgt_Total = 0;
+            for(int i = 0; i < user.budgets.size(); i++) {
+                mBgt_Total = Long.valueOf(user.budgets.get(i).amount) + mBgt_Total;
+            }
+            budget_total.setText("$" + mBgt_Total);
+
+        }
+
         if(user == null) {
             home_name.setText("Welcome back!");
         } else { home_name.setText("Welcome back " + user.first_name + "!"); }
 
-        /*for(int i = 0; i < user.accounts.size(); i++) {
+        for(int i = 0; i < user.accounts.size(); i++) {
             System.out.println("Account name: " + user.accounts.get(i).account_name + "Account type: " +  user.accounts.get(i).account_type + "Income amount: " + user.accounts.get(i).income_bankname + "Account balance: " + user.accounts.get(i).account_balance); }
 
         for(int i = 0; i < user.expenses.size(); i++) {
@@ -83,16 +137,16 @@ public class activity_home extends AppCompatActivity implements View.OnClickList
 //      */  //System.out.println("Category: " + user.expenses.get(0).category + "Recurring?: " +  user.expenses.get(0).recurring + "Destination: " + user.expenses.get(0).destination + "Date: " + user.expenses.get(0).date);
 
         //linking buttons to their respective ids
-        home = (Button) findViewById(R.id.home);
+        home = (ImageButton) findViewById(R.id.home);
         home.setOnClickListener(this);
 
-        home_expenses = (Button) findViewById(R.id.home_expenses);
+        home_expenses = (ImageButton) findViewById(R.id.home_expenses);
         home.setOnClickListener(this);
 
-        home_accounts = (Button) findViewById(R.id.home_accounts);
+        home_accounts = (ImageButton) findViewById(R.id.home_accounts);
         home.setOnClickListener(this);
 
-        home_budget = (Button) findViewById(R.id.home_budget);
+        home_budget = (ImageButton) findViewById(R.id.home_budget);
         home.setOnClickListener(this);
 
         home_profile = (Button) findViewById(R.id.home_profile_button);
