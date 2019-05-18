@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,11 +17,13 @@ public class Expense_Adapter extends RecyclerView.Adapter<Expense_Adapter.myView
 
 Context mContext;
 List<Expenses> mData;
+    User user;
 
 
-public Expense_Adapter(Context mContext, List<Expenses> mData) {
+public Expense_Adapter(Context mContext, List<Expenses> mData, User pass_user) {
     this.mContext = mContext;
     this.mData = mData;
+    user = pass_user;
 
 }
 
@@ -33,10 +36,24 @@ public Expense_Adapter(Context mContext, List<Expenses> mData) {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull myViewHolder myViewHolder, int i) {
-    myViewHolder.tv_title.setText(mData.get(i).destination);
+    public void onBindViewHolder(@NonNull myViewHolder myViewHolder, final int i) {
+    myViewHolder.expense_cost.setText("$" + mData.get(i).cost);
+    myViewHolder.destination.setText(mData.get(i).destination);
+        myViewHolder.category.setText(mData.get(i).category);
+        myViewHolder.account.setText(mData.get(i).account.income_bankname);
+        myViewHolder.next_payment.setText("Next payment: " + mData.get(i).date);
 
-
+        myViewHolder.delete_expense.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mData.remove(i);
+                notifyItemChanged(i);
+                notifyItemRangeRemoved(i, 1);
+                user.expenses.remove(i);
+                Serialization save = new Serialization();
+                save.load_user(user);
+            }
+        });
     }
 
     @Override
@@ -45,15 +62,21 @@ public Expense_Adapter(Context mContext, List<Expenses> mData) {
     }
 
     public class myViewHolder extends RecyclerView.ViewHolder {
-    ImageView photo_profile, background_image;
-    TextView tv_title, tv_nbFollowers;
-
+        TextView expense_cost;
+        TextView destination;
+        TextView category;
+        TextView account;
+        TextView next_payment;
+        Button delete_expense;
 
         public myViewHolder(View itemView) {
             super(itemView);
-            //photo_profile = itemView.findViewById(R.id.profile_img);
-            tv_title = itemView.findViewById(R.id.expense_title);
-
+            expense_cost = itemView.findViewById(R.id.expense);
+            destination = itemView.findViewById(R.id.destination);
+            category = itemView.findViewById(R.id.category);
+            account = itemView.findViewById(R.id.expense_account);
+            next_payment = itemView.findViewById(R.id.expense_days);
+            delete_expense = itemView.findViewById(R.id.button_delete);
         }
 
     }

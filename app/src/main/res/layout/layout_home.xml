@@ -310,8 +310,9 @@
     <TextView
         android:id="@+id/budget_number2"
         android:layout_width="wrap_content"
-        android:layout_height="15dp"
+        android:layout_height="32dp"
         android:layout_marginStart="84dp"
+        android:layout_marginTop="6dp"
         android:layout_marginBottom="8dp"
         android:text="Total budgets (balance)"
         android:textColor="@color/budget_home_text_total"
@@ -319,7 +320,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/imageView10"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView11"
-        app:layout_constraintVertical_bias="0.892" />
+        app:layout_constraintVertical_bias="0.927" />
 
     <TextView
         android:id="@+id/expense_number2"

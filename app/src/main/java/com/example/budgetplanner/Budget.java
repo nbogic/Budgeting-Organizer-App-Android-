@@ -9,17 +9,15 @@ public class Budget implements Serializable {
     private static final long serialVersionUID = -426918219129328097L;
 
     public String name;
-    public String duration;
     public String date;
-    public String amount;
+    public Long amount;
     public String category;
 
     public List<Expenses> expenses = new ArrayList();
     public List<Accounts> accounts = new ArrayList();
 
-    public Budget(String b_name, String b_duration, String b_date, String b_amount, String b_category) {
+    public Budget(String b_name, String b_date, Long b_amount, String b_category) {
         name = b_name;
-        duration = b_duration;
         date = b_date;
         amount = b_amount;
         category = b_category;

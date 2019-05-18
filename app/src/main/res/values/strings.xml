@@ -28,4 +28,8 @@
         <item>Yearly</item>
     </string-array>
 
+    <string-array name="budget_arrays">
+        <item>Non-necessities</item>
+        <item>Necessities</item>
+    </string-array>
 </resources>

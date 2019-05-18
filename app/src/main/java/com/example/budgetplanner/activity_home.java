@@ -107,7 +107,9 @@ public class activity_home extends AppCompatActivity implements View.OnClickList
             int mAccounts = user.accounts.size();
             long mAcc_Total = 0;
             for(int i = 0; i < user.accounts.size(); i++) {
-                mAcc_Total = Long.valueOf(user.accounts.get(i).account_balance) + mAcc_Total;
+                if(user.accounts.get(i).account_balance != "") {
+                    mAcc_Total = Long.valueOf(user.accounts.get(i).account_balance) + mAcc_Total;
+                }
             }
             account_count.setText(mAccounts + " accounts");
             account_total.setText("$" + mAcc_Total);
@@ -127,14 +129,6 @@ public class activity_home extends AppCompatActivity implements View.OnClickList
         if(user == null) {
             home_name.setText("Welcome back!");
         } else { home_name.setText("Welcome back " + user.first_name + "!"); }
-
-        for(int i = 0; i < user.accounts.size(); i++) {
-            System.out.println("Account name: " + user.accounts.get(i).account_name + "Account type: " +  user.accounts.get(i).account_type + "Income amount: " + user.accounts.get(i).income_bankname + "Account balance: " + user.accounts.get(i).account_balance); }
-
-        for(int i = 0; i < user.expenses.size(); i++) {
-            System.out.println("Category: " + user.expenses.get(i).category + "Recurring?: " +  user.expenses.get(i).recurring + "Destination: " + user.expenses.get(i).destination + "Date: " + user.expenses.get(i).date); }
-
-//      */  //System.out.println("Category: " + user.expenses.get(0).category + "Recurring?: " +  user.expenses.get(0).recurring + "Destination: " + user.expenses.get(0).destination + "Date: " + user.expenses.get(0).date);
 
         //linking buttons to their respective ids
         home = (ImageButton) findViewById(R.id.home);

@@ -12,7 +12,7 @@ public class Expenses implements Serializable {
     public String category;
     public String date;
     public Boolean recurring;
-    private Accounts account;
+    public Accounts account;
     public long cost;
 
     public Expenses(String e_destination, String e_category, String e_date, Boolean e_recurring, Accounts e_account, long e_cost) {
