@@ -7,11 +7,14 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -67,6 +70,8 @@ public class activity_home_budget extends AppCompatActivity implements View.OnCl
     private Button clear_expenses;
     private Button clear_accounts;
     private View myView;
+    BottomNavigationView nav_budget;
+    private Intent intent_pass;
 
     private DatePickerDialog.OnDateSetListener OnDateSetListener;
     private Spinner budget_addcategory;
@@ -91,26 +96,6 @@ public class activity_home_budget extends AppCompatActivity implements View.OnCl
     public void onClick(View view) {
         Intent intent;
         switch (view.getId()) {
-            case R.id.home:
-                intent = new Intent(this, activity_home.class);
-                intent.putExtra("Home_User", user);
-                startActivity(intent);
-                break;
-            case R.id.home_expenses:
-                intent = new Intent(this, activity_home_expenses.class);
-                intent.putExtra("Home_User", user);
-                startActivity(intent);
-                break;
-            case R.id.home_accounts:
-                intent = new Intent(this, activity_home_accounts.class);
-                intent.putExtra("Home_User", user);
-                startActivity(intent);
-                break;
-            case R.id.budget:
-                intent = new Intent(this, activity_home_budget.class);
-                intent.putExtra("Home_User", user);
-                startActivity(intent);
-                break;
             case R.id.budget_create:
                 budget_background.setAlpha(90);
                 mContainerView.addView(myView);
@@ -118,9 +103,9 @@ public class activity_home_budget extends AppCompatActivity implements View.OnCl
                 break;
 
             case R.id.budget_add:
-                budget_name = (EditText) myView.findViewById(R.id.budget_name);
-                budget_category = (Spinner) myView.findViewById(R.id.budget_category);
-                budget_amount = (EditText) myView.findViewById(R.id.budget_amount);
+                budget_name = myView.findViewById(R.id.budget_name);
+                budget_category = myView.findViewById(R.id.budget_category);
+                budget_amount = myView.findViewById(R.id.budget_amount);
                 int validation_counter = 0;
 
                 if (budget_name.getText().toString().equals("") || equals("0")) {
@@ -308,11 +293,55 @@ public class activity_home_budget extends AppCompatActivity implements View.OnCl
 
     }
 
+    public void setIntent(Class param_class) {
+        intent_pass = new Intent(this, param_class);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_home_budget);
 
+        nav_budget = (BottomNavigationView) findViewById(R.id.budget_nav);
+        nav_budget.setItemIconTintList(null);
+        nav_budget.setItemTextColor(null);
+
+        nav_budget.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Intent intent;
+                Class change_activity;
+                switch (item.getItemId()) {
+                    case R.id.budget_home:
+                        change_activity = activity_home.class;
+                        setIntent(change_activity);
+                        intent_pass.putExtra("Home_User", user);
+                        startActivity(intent_pass);
+                        break;
+
+                    case R.id.budget_expenses:
+                        change_activity = activity_home_expenses.class;
+                        setIntent(change_activity);
+                        intent_pass.putExtra("Home_User", user);
+                        startActivity(intent_pass);
+                        break;
+
+                    case R.id.budget_accounts:
+                        change_activity = activity_home_accounts.class;
+                        setIntent(change_activity);
+                        intent_pass.putExtra("Home_User", user);
+                        startActivity(intent_pass);
+                        break;
+
+                    case R.id.budget:
+                        change_activity = activity_home_budget.class;
+                        setIntent(change_activity);
+                        intent_pass.putExtra("Home_User", user);
+                        startActivity(intent_pass);
+                        break;
+                }
+                return false;
+            }
+        });
         //get the user object that was passed from the previous activity (login)
         Intent intent = getIntent();
         //assign the returned object to the current user object
@@ -320,7 +349,7 @@ public class activity_home_budget extends AppCompatActivity implements View.OnCl
         //change the TextView to display the user's first name using the new user object, welcome message
         //setup recycler view with the adapter
 
-        mContainerView = (LinearLayout) findViewById(R.id.view_budget);
+        mContainerView = findViewById(R.id.view_budget);
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         myView = inflater.inflate(R.layout.layout_budgets_create, null);
 
@@ -333,43 +362,31 @@ public class activity_home_budget extends AppCompatActivity implements View.OnCl
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        budget_home = (ImageButton) findViewById(R.id.home);
-        budget_home.setOnClickListener(this);
-
-        budget_expenses = (ImageButton) findViewById(R.id.home_expenses);
-        budget_expenses.setOnClickListener(this);
-
         budget_background = findViewById(R.id.background);
 
-        budget = (ImageButton) findViewById(R.id.budget);
-        budget.setOnClickListener(this);
-
-        budget_accounts = (ImageButton) findViewById(R.id.home_accounts);
-        budget_accounts.setOnClickListener(this);
-
-        budget_cancel = (Button) myView.findViewById(R.id.budget_cancel);
+        budget_cancel = myView.findViewById(R.id.budget_cancel);
         budget_cancel.setOnClickListener(this);
 
-        budget_create = (Button) findViewById(R.id.budget_create);
+        budget_create = findViewById(R.id.budget_create);
         budget_create.setOnClickListener(this);
 
-        budget_add_date = (Button) myView.findViewById(R.id.button_add_date);
+        budget_add_date = myView.findViewById(R.id.button_add_date);
         budget_add_date.setOnClickListener(this);
 
-        budget_add = (Button) myView.findViewById(R.id.budget_add);
+        budget_add = myView.findViewById(R.id.budget_add);
         budget_add.setOnClickListener(this);
 
-        budget_add_expense = (Spinner) myView.findViewById(R.id.budget_addexpense);
-        budget_add_account = (Spinner) myView.findViewById(R.id.budget_addaccount);
+        budget_add_expense = myView.findViewById(R.id.budget_addexpense);
+        budget_add_account = myView.findViewById(R.id.budget_addaccount);
 
-        clear_expenses = (Button) myView.findViewById(R.id.budget_clear);
+        clear_expenses = myView.findViewById(R.id.budget_clear);
         clear_expenses.setOnClickListener(this);
 
-        clear_accounts = (Button) myView.findViewById(R.id.budget_clear2);
+        clear_accounts = myView.findViewById(R.id.budget_clear2);
         clear_accounts.setOnClickListener(this);
 
-        list_expenses =  (ListView) myView.findViewById(R.id.list_expenses);
-        list_accounts = (ListView) myView.findViewById(R.id.list_accounts);
+        list_expenses = myView.findViewById(R.id.list_expenses);
+        list_accounts = myView.findViewById(R.id.list_accounts);
 
         list_expense_items = new ArrayList<String>();
         expense_adapter = new ArrayAdapter<String>(this,

@@ -7,11 +7,14 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -40,11 +43,7 @@ import static android.view.View.VISIBLE;
 
 public class activity_home_accounts extends AppCompatActivity implements View.OnClickListener {
 
-    //accounts layout buttons
-    private ImageButton accounts_home;
-    private ImageButton accounts_expenses;
-    private ImageButton accounts;
-    private ImageButton accounts_budget;
+
     private Button accounts_create;
     private User user;
     private static final String TAG = "activity_account_accounts";
@@ -62,6 +61,8 @@ public class activity_home_accounts extends AppCompatActivity implements View.On
     private String selection;
     private String date;
     private int income_year, income_month, income_day;
+    BottomNavigationView nav_accounts;
+    private Intent intent_pass;
 
     private LinearLayout mContainerView;
     private View myView;
@@ -73,27 +74,6 @@ public class activity_home_accounts extends AppCompatActivity implements View.On
     public void onClick(View view) {
         Intent intent;
         switch (view.getId()) {
-            case R.id.home:
-                intent = new Intent(this, activity_home.class);
-                intent.putExtra("Home_User", user);
-                startActivity(intent);
-                break;
-            case R.id.home_expenses:
-                intent = new Intent(this, activity_home_expenses.class);
-                intent.putExtra("Home_User", user);
-                startActivity(intent);
-                break;
-            case R.id.home_accounts:
-                intent = new Intent(this, activity_home_accounts.class);
-                intent.putExtra("Home_User", user);
-                startActivity(intent);
-                break;
-            case R.id.accounts_budget:
-                intent = new Intent(this, activity_home_budget.class);
-                intent.putExtra("Home_User", user);
-                startActivity(intent);
-                break;
-
             case R.id.accounts_create:
                 account_background.setAlpha(90);
                 mContainerView.addView(myView);
@@ -128,10 +108,10 @@ public class activity_home_accounts extends AppCompatActivity implements View.On
                 break;
 
             case R.id.account_add:
-                account_spinner = (Spinner) myView.findViewById(R.id.accounts_spinner);
-                income_amount = (EditText) myView.findViewById(R.id.income_amount);;
-                bank_name = (EditText) myView.findViewById(R.id.bank_name);;
-                account_balance = (EditText) myView.findViewById(R.id.edit_balance);;
+                account_spinner = myView.findViewById(R.id.accounts_spinner);
+                income_amount = myView.findViewById(R.id.income_amount);
+                bank_name = myView.findViewById(R.id.bank_name);
+                account_balance = myView.findViewById(R.id.edit_balance);
                 int validation_counter = 0;
 
                 if (income_amount.getText().toString().equals("") || equals("0")) {
@@ -247,33 +227,78 @@ public class activity_home_accounts extends AppCompatActivity implements View.On
 
     }
 
+    public void setIntent(Class param_class) {
+        intent_pass = new Intent(this, param_class);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_home_accounts);
+
+        nav_accounts = (BottomNavigationView) findViewById(R.id.account_nav);
+        nav_accounts .setItemIconTintList(null);
+        nav_accounts .setItemTextColor(null);
+
+        nav_accounts.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Intent intent;
+                Class change_activity;
+                switch (item.getItemId()) {
+                    case R.id.account_home:
+                        change_activity = activity_home.class;
+                        setIntent(change_activity);
+                        intent_pass.putExtra("Home_User", user);
+                        startActivity(intent_pass);
+                        break;
+
+                    case R.id.account_expenses:
+                        change_activity = activity_home_expenses.class;
+                        setIntent(change_activity);
+                        intent_pass.putExtra("Home_User", user);
+                        startActivity(intent_pass);
+                        break;
+
+                    case R.id.accounts:
+                        change_activity = activity_home_accounts.class;
+                        setIntent(change_activity);
+                        intent_pass.putExtra("Home_User", user);
+                        startActivity(intent_pass);
+                        break;
+
+                    case R.id.account_budget:
+                        change_activity = activity_home_budget.class;
+                        setIntent(change_activity);
+                        intent_pass.putExtra("Home_User", user);
+                        startActivity(intent_pass);
+                        break;
+                }
+                return false;
+            }
+        });
 
         Intent intent = getIntent();
         //assign the returned object to the current user object
         user = (User)intent.getSerializableExtra("Home_User");
     //   System.out.println("Details from home screen ----- username: " + user.user_name + "password: " + user.password + "email: " + user.email + "first name: " + user.first_name);
 
-        mContainerView = (LinearLayout) findViewById(R.id.view_account);
+        mContainerView = findViewById(R.id.view_account);
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         myView = inflater.inflate(R.layout.layout_accounts_create, null);
 
         account_background = findViewById(R.id.background);
 
-        account_add = (Button) myView.findViewById(R.id.account_add);
+        account_add = myView.findViewById(R.id.account_add);
         account_add.setOnClickListener(this);
 
-        account_cancel = (Button) myView.findViewById(R.id.account_cancel);
+        account_cancel = myView.findViewById(R.id.account_cancel);
         account_cancel.setOnClickListener(this);
 
-        account_income_add = (Button) myView.findViewById(R.id.income_add_date);
+        account_income_add = myView.findViewById(R.id.income_add_date);
         account_income_add.setOnClickListener(this);
 
-        account_spinner2 = (Spinner) myView.findViewById(R.id.accounts_spinner2);
-        add_date3 = (TextView) myView.findViewById(R.id.add_date3);
+        account_spinner2 = myView.findViewById(R.id.accounts_spinner2);
+        add_date3 = myView.findViewById(R.id.add_date3);
 
         RecyclerView recyclerView = findViewById(R.id.rv_account);
         mlist = new ArrayList<>();
@@ -284,19 +309,8 @@ public class activity_home_accounts extends AppCompatActivity implements View.On
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        accounts_home = (ImageButton) findViewById(R.id.home);
-        accounts_home.setOnClickListener(this);
 
-        accounts_expenses = (ImageButton) findViewById(R.id.home_expenses);
-        accounts_expenses.setOnClickListener(this);
-
-        accounts = (ImageButton) findViewById(R.id.home_accounts);
-        accounts.setOnClickListener(this);
-
-        accounts_budget = (ImageButton) findViewById(R.id.accounts_budget);
-        accounts_budget.setOnClickListener(this);
-
-        accounts_create = (Button) findViewById(R.id.accounts_create);
+        accounts_create = findViewById(R.id.accounts_create);
         accounts_create.setOnClickListener(this);
 
         //check spinner selection, if the user chooses something other than a daily income, a option to choose a specific day will be visible

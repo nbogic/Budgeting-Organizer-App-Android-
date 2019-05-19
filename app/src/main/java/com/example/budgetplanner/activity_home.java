@@ -1,73 +1,64 @@
 package com.example.budgetplanner;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Layout;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.io.Serializable;
-
+/**
+ * After a successful login, the user will reach the home screen activity, contains the navigation bar/menu and summaries of user info
+ */
 public class activity_home extends AppCompatActivity implements View.OnClickListener, Serializable {
 
-    //home layout buttons
-    private ImageButton home;
-    private Button home_profile;
-    private ImageButton home_expenses;
-    private ImageButton home_accounts;
-    private ImageButton home_budget;
-    private TextView home_name;
-
-    private TextView expense_count;
-    private TextView expense_total;
-
-    private TextView account_count;
-    private TextView account_total;
-
-    private TextView budget_count;
-    private TextView budget_total;
-
-
+    /**
+     * btnProfile - takes the user to a screen that displays their account details and offers functions for modification
+     * tvHomeName - displays the user's first name within a greeting ("Welcome back x!")
+     * Expense count - shows the amount of expenses on this user, total shows the combined values of all expenses. Account count/budget count follow the same principles.
+     */
+    private Button btnProfile;
+    private TextView tvHomeName;
+    private TextView tvExpenseCount;
+    private TextView tvExpenseTotal;
+    private TextView tvAccountCount;
+    private TextView tvAccountTotal;
+    private TextView tvBudgetCount;
+    private TextView tvBudgetTotal;
+    private Intent intent_pass;
     private User user;
 
+    /**
+     * nav_home - bottom navigation bar
+     */
+    BottomNavigationView nav_home;
+
+    /**
+     * onClick - listen for button clicks and perform the appropriate function
+     */
     @Override
     public void onClick(View view) {
         Intent intent;
         switch (view.getId()) {
-            case R.id.home:
-                intent = new Intent(this, activity_home.class);
-                intent.putExtra("Home_User", user);
-                startActivity(intent);
-
-                break;
-            case R.id.home_expenses:
-                intent = new Intent(this, activity_home_expenses.class);
-                intent.putExtra("Home_User", user);
-                startActivity(intent);
-                break;
-
-            case R.id.home_accounts:
-                intent = new Intent(this, activity_home_accounts.class);
-                intent.putExtra("Home_User", user);
-                startActivity(intent);
-                break;
-
-            case R.id.home_budget:
-                intent = new Intent(this, activity_home_budget.class);
-                intent.putExtra("Home_User", user);
-                startActivity(intent);
-                break;
 
             case R.id.home_profile_button:
                 intent = new Intent(this, activity_account_personal.class);
                 intent.putExtra("Home_User", user);
-//                System.out.println("Details from home screen ----- username: " + user_intent.user_name + "password: " + user_intent.password + "email: " + user_intent.email + "first name: " + user_intent.first_name);
                 startActivity(intent);
                 break;
         }
+    }
+
+    /**
+     * setIntent - assigns a class (activity) to a intent, used in the listener function
+     * @param param_class - class that is to be assigned to the variable intent_pass
+     */
+    public void setIntent(Class param_class) {
+        intent_pass = new Intent(this, param_class);
     }
 
     @Override
@@ -75,31 +66,84 @@ public class activity_home extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_home);
 
-        //get the user object that was passed from the previous activity (login)
-        Intent intent = getIntent();
-        //assign the returned object to the current user object
-        user = (User)intent.getSerializableExtra("Home_User");
-        //change the TextView to display the user's first name using the new user object, welcome message
-        home_name = (TextView) findViewById(R.id.home_name);
-        expense_count = (TextView) findViewById(R.id.expense_number);
-        expense_total = (TextView) findViewById(R.id.expense_number2);
-        account_count =  (TextView) findViewById(R.id.account_number);
-        account_total = (TextView) findViewById(R.id.account_number2);
-        budget_count = (TextView) findViewById(R.id.budget_number);
-        budget_total = (TextView) findViewById(R.id.budget_number2);
+        /**
+         * assign the navigation view, change colours to null to relfect original colours values set in the menu files
+         */
+        nav_home = (BottomNavigationView) findViewById(R.id.home_nav);
+        nav_home.setItemIconTintList(null);
+        nav_home.setItemTextColor(null);
+        /**
+         * onOnNavigationItemSelectedListener - listen for clicks in the navigation view, take the user to the desired screen
+         */
+        nav_home.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Intent intent;
+                Class change_activity;
+                switch (item.getItemId()) {
+                    case R.id.home:
+                        change_activity = activity_home.class;
+                        setIntent(change_activity);
+                        intent_pass.putExtra("Home_User", user);
+                        startActivity(intent_pass);
+                        break;
 
+                    case R.id.home_expenses:
+                        change_activity = activity_home_expenses.class;
+                        setIntent(change_activity);
+                        intent_pass.putExtra("Home_User", user);
+                        startActivity(intent_pass);
+                        break;
+
+                    case R.id.home_accounts:
+                        change_activity = activity_home_accounts.class;
+                        setIntent(change_activity);
+                        intent_pass.putExtra("Home_User", user);
+                        startActivity(intent_pass);
+                        break;
+
+                    case R.id.home_budget:
+                        change_activity = activity_home_budget.class;
+                        setIntent(change_activity);
+                        intent_pass.putExtra("Home_User", user);
+                        startActivity(intent_pass);
+                        break;
+                }
+                return false;
+            }
+        });
+
+        /**
+         * get the user object that was passed from the previous activity (login)
+         * assign the returned object to the current user object
+         */
+        Intent intent = getIntent();
+        user = (User)intent.getSerializableExtra("Home_User");
+
+        tvHomeName = findViewById(R.id.home_name);
+        tvExpenseCount = findViewById(R.id.expense_number);
+        tvExpenseTotal = findViewById(R.id.expense_number2);
+        tvAccountCount = findViewById(R.id.account_number);
+        tvAccountTotal = findViewById(R.id.account_number2);
+        tvBudgetCount = findViewById(R.id.budget_number);
+        tvBudgetTotal = findViewById(R.id.budget_number2);
+
+        /**
+         * if user data (expenses, accounts, budgets) is null, then alternative values will be assigned to the TextViews
+         * to avoid exception throwing
+         */
         if(user.expenses != null) {
             int mExpenses = user.expenses.size();
             long mExp_Total = 0;
 
-            expense_count.setText(mExpenses + " expenses");
+            tvExpenseCount.setText(mExpenses + " expenses");
             for (int i = 0; i < user.expenses.size(); i++) {
                 mExp_Total = user.expenses.get(i).cost + mExp_Total;
             }
-            expense_total.setText("$" + String.valueOf(mExp_Total));
+            tvExpenseTotal.setText("$" + String.valueOf(mExp_Total));
         } else {
-            expense_count.setText("Go create some expenses!");
-            expense_total.setText("");
+            tvExpenseCount.setText("Go create some expenses!");
+            tvExpenseTotal.setText("");
 
         }
 
@@ -111,39 +155,27 @@ public class activity_home extends AppCompatActivity implements View.OnClickList
                     mAcc_Total = Long.valueOf(user.accounts.get(i).account_balance) + mAcc_Total;
                 }
             }
-            account_count.setText(mAccounts + " accounts");
-            account_total.setText("$" + mAcc_Total);
+            tvAccountCount.setText(mAccounts + " accounts");
+            tvAccountTotal.setText("$" + mAcc_Total);
         }
 
         if(user.budgets != null) {
             int mBudgets = user.budgets.size();
-            budget_count.setText(mBudgets + " budgets");
+            tvBudgetCount.setText(mBudgets + " budgets");
             long mBgt_Total = 0;
             for(int i = 0; i < user.budgets.size(); i++) {
                 mBgt_Total = Long.valueOf(user.budgets.get(i).amount) + mBgt_Total;
             }
-            budget_total.setText("$" + mBgt_Total);
+            tvBudgetTotal.setText("$" + mBgt_Total);
 
         }
 
+        /**
+         * greeting message
+         */
         if(user == null) {
-            home_name.setText("Welcome back!");
-        } else { home_name.setText("Welcome back " + user.first_name + "!"); }
+            tvHomeName.setText("Welcome back!");
+        } else { tvHomeName.setText("Welcome back " + user.first_name + "!"); }
 
-        //linking buttons to their respective ids
-        home = (ImageButton) findViewById(R.id.home);
-        home.setOnClickListener(this);
-
-        home_expenses = (ImageButton) findViewById(R.id.home_expenses);
-        home.setOnClickListener(this);
-
-        home_accounts = (ImageButton) findViewById(R.id.home_accounts);
-        home.setOnClickListener(this);
-
-        home_budget = (ImageButton) findViewById(R.id.home_budget);
-        home.setOnClickListener(this);
-
-        home_profile = (Button) findViewById(R.id.home_profile_button);
-        home.setOnClickListener(this);
     }
 }

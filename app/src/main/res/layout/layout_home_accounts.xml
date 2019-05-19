@@ -38,7 +38,7 @@
     <View
         android:id="@+id/view12"
         android:layout_width="wrap_content"
-        android:layout_height="76dp"
+        android:layout_height="73dp"
         android:layout_margin="0dp"
         android:alpha="1"
         android:background="@color/account_add_button2"
@@ -62,117 +62,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
-
-    <ImageButton
-        android:id="@+id/home"
-        android:layout_width="51dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="4dp"
-        android:background="@drawable/bg_intro_transparent"
-        android:scaleType="fitStart"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/view12"
-        app:srcCompat="@drawable/account_home" />
-
-    <ImageButton
-        android:id="@+id/home_expenses"
-        android:layout_width="51dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="4dp"
-        android:background="@drawable/bg_intro_transparent"
-        android:scaleType="fitStart"
-        app:layout_constraintStart_toEndOf="@+id/home"
-        app:layout_constraintTop_toTopOf="@+id/view12"
-        app:srcCompat="@drawable/expenses_icon_not_clicked" />
-
-    <ImageButton
-        android:id="@+id/home_accounts"
-        android:layout_width="51dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="4dp"
-        android:background="@drawable/bg_intro_transparent"
-        android:scaleType="fitStart"
-        app:layout_constraintStart_toEndOf="@+id/home_expenses"
-        app:layout_constraintTop_toTopOf="@+id/view12"
-        app:srcCompat="@drawable/account_icon_clicked" />
-
-    <ImageButton
-        android:id="@+id/accounts_budget"
-        android:layout_width="51dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="45dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="45dp"
-        android:background="@drawable/bg_intro_transparent"
-        android:scaleType="fitStart"
-        app:layout_constraintEnd_toEndOf="@+id/view12"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/home_accounts"
-        app:layout_constraintTop_toTopOf="@+id/view12"
-        app:srcCompat="@drawable/budget_icon_not_clicked" />
-
-    <TextView
-        android:id="@+id/textView31"
-        android:layout_width="42dp"
-        android:layout_height="15dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="Home"
-        android:textColor="@color/account_add_button544"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@+id/view12"
-        app:layout_constraintStart_toStartOf="@+id/view12"
-        app:layout_constraintTop_toBottomOf="@+id/home"
-        app:layout_constraintVertical_bias="0.777" />
-
-    <TextView
-        android:id="@+id/textView32"
-        android:layout_width="59dp"
-        android:layout_height="15dp"
-        android:layout_marginStart="129dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="Expenses"
-        android:textColor="@color/account_add_button544"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@+id/view12"
-        app:layout_constraintStart_toStartOf="@+id/view12"
-        app:layout_constraintTop_toBottomOf="@+id/home_expenses"
-        app:layout_constraintVertical_bias="0.777" />
-
-    <TextView
-        android:id="@+id/textView33"
-        android:layout_width="59dp"
-        android:layout_height="15dp"
-        android:layout_marginStart="224dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="Accounts"
-        android:textColor="@color/account_add_button544"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@+id/view12"
-        app:layout_constraintStart_toStartOf="@+id/view12"
-        app:layout_constraintTop_toBottomOf="@+id/home"
-        app:layout_constraintVertical_bias="0.777" />
-
-    <TextView
-        android:id="@+id/textView34"
-        android:layout_width="59dp"
-        android:layout_height="15dp"
-        android:layout_marginStart="324dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="Budgets"
-        android:textColor="@color/account_add_button544"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@+id/view12"
-        app:layout_constraintStart_toStartOf="@+id/view12"
-        app:layout_constraintTop_toBottomOf="@+id/home"
-        app:layout_constraintVertical_bias="0.777" />
 
     <Button
         android:id="@+id/accounts_create"
@@ -206,5 +95,20 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view13" />
+
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/account_nav"
+        style="@style/Animation.AppCompat.DropDownUp"
+        android:layout_width="427dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="5dp"
+        app:labelVisibilityMode="labeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.75"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.998"
+        app:menu="@menu/menu_account" />
 
 </android.support.constraint.ConstraintLayout>

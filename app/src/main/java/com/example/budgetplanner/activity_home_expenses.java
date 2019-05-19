@@ -7,25 +7,23 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
-import android.support.constraint.ConstraintLayout;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Switch;
-import android.widget.TextView;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -41,104 +39,101 @@ import java.util.List;
 import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
 
+/**
+ * This screen shows all the user's saved expenses, and allows functionality for new expenses to be created, and old ones to be deleted
+ */
 public class activity_home_expenses extends AppCompatActivity implements View.OnClickListener {
 
-    //expenses layout buttons
-    private ImageButton expenses_home;
-    private ImageButton expenses;
-    private ImageButton expenses_accounts;
-    private ImageButton expenses_budget;
-    private Button expenses_create;
-    private RecyclerView recyclerView;
+    /**
+     * btnExpenseCreate - lanuches the expense creation fragment within the activity
+     * login_file - account directory, carried over from previous activities
+     * btnAddDate - add a date to the expense
+     * containerView - expense creation fragment will be inflated within this view
+     */
 
-    private View myView;
+    private Button btnExpenseCreate;
+    private View vMyView;
     private User user;
-    private static final String TAG = "activity_account_expenses";
+    private static final String TAG = "activity_home_expenses";
     private static final String login_file = "/data/data/com.example.budgetplanner/files/list_users.txt";
     private DatePickerDialog.OnDateSetListener OnDateSetListener;
-    private Button button_add_date;
-    private Button button_add;
-    private Button button_cancel;
-    private ImageView expense_background;
-    private Spinner category_spinner;
-    private Spinner account_spinner;
-    private EditText expense_amount;
-    private EditText expense_destination;
-    private Switch expense_recurring;
-    private TextView add_date2;
+    private Button btnAddDate;
+    private Button btnAdd;
+    private Button btnCancel;
+    /**
+     * background image for this screen
+     */
+    private ImageView bgExpense;
+    private Spinner spnCategory;
+    private Spinner spnAccount;
+    private EditText etExpenseAmount;
+    private EditText etExpenseDestination;
+    private Switch swSwitch;
     private String date = "";
 
-    private LinearLayout view;
-    private LinearLayout mContainerView;
-    private List<Expenses> mlist;
+    private LinearLayout containerView;
+    private List<Expenses> expensesList;
+
     private Expense_Adapter adapter;
+    BottomNavigationView nav_expenses;
+    private Intent intent_pass;
 
-    ArrayList<String> list_account_items;
-    ArrayAdapter<String> account_adapter;
-
+    /**
+     * integers reserved for getting the user's chosen date for the expense to be active from
+     */
     private int expense_year, expense_month, expense_day;
 
+    /**
+     * onClick - listen for button clicks and perform the appropriate function
+     */
     @Override
     public void onClick(View view) {
         Intent intent;
         User user_intent;
         switch (view.getId()) {
-            case R.id.home:
-                intent = new Intent(this, activity_home.class);
-                user_intent = user;
-                intent.putExtra("Home_User", user_intent);
-                startActivity(intent);
-                break;
-
-            case R.id.home_expenses:
-                intent = new Intent(this, activity_home_expenses.class);
-                user_intent = user;
-                intent.putExtra("Home_User", user_intent);
-                startActivity(intent);
-                break;
-
-            case R.id.home_accounts:
-                intent = new Intent(this, activity_home_accounts.class);
-                user_intent = user;
-                intent.putExtra("Home_User", user_intent);
-                startActivity(intent);
-                break;
-
-            case R.id.expenses_budget:
-                intent = new Intent(this, activity_home_budget.class);
-                user_intent = user;
-                intent.putExtra("Home_User", user_intent);
-                startActivity(intent);
-                break;
-
             case R.id.expenses_create:
-                intent = new Intent(this, activity_home_expenses.class);
-                user_intent = user;
-                expense_background.setAlpha(90);
-                mContainerView.addView(myView);
+                /**
+                 * add a new view to containerView (create expense card), and darken the background to promote visibility
+                 */
+                bgExpense.setAlpha(90);
+                containerView.addView(vMyView);
                 break;
 
             case R.id.expense_add:
-                expense_amount = (EditText) myView.findViewById(R.id.edit_amount);
-                expense_destination = (EditText) myView.findViewById(R.id.edit_destination);
-                category_spinner = (Spinner) myView.findViewById(R.id.expense_spinner2);
-                expense_recurring = (Switch) myView.findViewById(R.id.switch_recurring);
+                /**
+                 * get IDs from the elements within vMyView
+                 */
+                etExpenseAmount = vMyView.findViewById(R.id.edit_amount);
+                etExpenseDestination = vMyView.findViewById(R.id.edit_destination);
+                spnCategory = vMyView.findViewById(R.id.expense_spinner2);
+                swSwitch = vMyView.findViewById(R.id.switch_recurring);
 
+                /**
+                 * temporary expense create to contain new user information
+                 */
                 Expenses user_expense;
-                //get the expense amount, convert to string
-                String Cost = expense_amount.getText().toString();
+                /**
+                 * get the expense amount, convert to a String
+                 */
+                String Cost = etExpenseAmount.getText().toString();
+
+                /**
+                 * Validation occurs, all conditional statements must not be true in order to increase validation counter
+                 * Validation counter must be a certain number before the expense can be finalized
+                 * If a condition is not met, then a dialogue box will pop up on the user's screen
+                 */
                 Integer validation_counter = 0;
 
-                if (expense_amount.getText().toString().equals("") || equals("0")) {
-                    show_alert("You left a field empty!", "Please enter a amount.");
+                if (etExpenseAmount.getText().toString().equals("") || equals("0")) {
+                    showMessage("You left a field empty!", "Please enter a amount.");
                     validation_counter = 0;
 
                 } else {
                     validation_counter = validation_counter + 1;
                 }
 
-                if (expense_destination.getText().toString().equals("") || expense_destination.getText().toString() == null) {
-                    show_alert("You left a field empty!", "Please enter a destination.");
+                if (etExpenseDestination.getText().toString().equals("") || etExpenseDestination.getText().toString() == null) {
+                    showMessage("You left a field empty!", "Please enter a destination.");
                     validation_counter = 0;
 
                 } else {
@@ -146,57 +141,77 @@ public class activity_home_expenses extends AppCompatActivity implements View.On
                 }
 
                 if (date.equals("") || date.equals(null)) {
-                    show_alert("You left a field empty!", "Please enter a date.");
+                    showMessage("You left a field empty!", "Please enter a date.");
                     validation_counter = 0;
 
                 } else {
                     validation_counter = validation_counter + 1;
                 }
 
-
+                /**
+                 * if the counter is equal to 3, then the expense creation can proceed
+                 */
                 if (validation_counter.equals(3)) {
-                    String account = account_spinner.getSelectedItem().toString();
+                    String account = spnAccount.getSelectedItem().toString();
 
+                    /**
+                     * loop through all the accounts stored within the user, if the selected account exists and is equal to the one selected by the user, then
+                     * a user expense is created containing all the information gathered above
+                     * The expense is added to the user's inner Expense list, and is then saved to the file.
+                     * Expense is added to a updated RecyclerView, the creation window is dismissed
+                     */
                     for(int i = 0; i < user.accounts.size(); i++) {
                         if(account.equals(user.accounts.get(i).income_bankname)) {
-                            user_expense = new Expenses(expense_destination.getText().toString(), category_spinner.getSelectedItem().toString(), date, expense_recurring.getShowText(), user.accounts.get(i), Long.valueOf(expense_amount.getText().toString()));
+                            user_expense = new Expenses(etExpenseDestination.getText().toString(), spnCategory.getSelectedItem().toString(), date, swSwitch.getShowText(), user.accounts.get(i), Long.valueOf(etExpenseAmount.getText().toString()));
                             user.expenses.add(user_expense);
+                            Serialization save = new Serialization();
                             expenses_account_load(FALSE);
-                            mlist.add(user_expense);
-                            mContainerView.removeAllViews();
-                            expense_background.setAlpha(200);
+                            expensesList.add(user_expense);
+                            containerView.removeAllViews();
+                            bgExpense.setAlpha(200);
                             adapter.notifyDataSetChanged();
                             break;
                         } else {
-                            show_alert("You left a field empty!", "Please select a account.");
+                            showMessage("You left a field empty!", "Please select a account.");
                         }
                     }
 
                 } else {
-                    show_alert("There was a issue.", "Please return and check that all fields are filled.");
+                    showMessage("There was a issue.", "Please return and check that all fields are filled.");
                 }
                 break;
 
             case R.id.expense_cancel:
-                mContainerView.removeAllViews();
-                expense_background.setAlpha(200);
+                /**
+                 * No changes are done, removes the creation view from the screen
+                 */
+                containerView.removeAllViews();
+                bgExpense.setAlpha(200);
                 break;
 
             case R.id.button_add_date:
-                //initialise calendar
+                /**
+                 * initialise the calendar
+                 */
                 Calendar calendar = Calendar.getInstance();
 
-                //get calendar days, months, and year
+                /**
+                 * get calendar days, months, and year
+                 */
                 expense_year = calendar.get(Calendar.YEAR);
                 expense_month = calendar.get(Calendar.MONTH);
                 expense_day = calendar.get(Calendar.DAY_OF_MONTH);
 
-                //create dialog, change appearance, include variables created above
+                /**
+                 * create dialog, change appearance, include variables created above
+                 */
                 DatePickerDialog exp_dialog = new DatePickerDialog(activity_home_expenses.this, android.R.style.Theme_Holo_Light_Dialog_MinWidth, OnDateSetListener, expense_year, expense_month, expense_day);
                 exp_dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 exp_dialog.show();
 
-                //wait for user input
+                /**
+                 * wait for user input
+                 */
                 OnDateSetListener = new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int exp_year, int exp_month, int exp_day) {
@@ -211,7 +226,13 @@ public class activity_home_expenses extends AppCompatActivity implements View.On
         }
     }
 
-    private void show_alert(String title, String description) {
+    /**
+     * showMessage - dialog creator, creates customized messages/alerts delivered to the user to inform them about a validation error or other inconsistency
+     * @param title - title of the message box, should be a one line brief description
+     * @param description - a description of the error in detail, instructing the user what to do to avoid this alert showing again
+     * @return void
+     */
+    private void showMessage(String title, String description) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(title);
         builder.setMessage(description);
@@ -231,7 +252,7 @@ public class activity_home_expenses extends AppCompatActivity implements View.On
     }
 
     //write function, overwrites the entire file with a new list
-    public List<User> expenses_account_write(List<User> new_user) {
+     public List<User> expenses_account_write(List<User> new_user) {
         //testing for feedback
         FileOutputStream file_out;
         File file = new File(login_file);
@@ -248,7 +269,7 @@ public class activity_home_expenses extends AppCompatActivity implements View.On
         return new_user;
     }
 
-    //modified reading function, made to overwrite the current file with the inclusion of a new expense object
+   //modified reading function, made to overwrite the current file with the inclusion of a new expense object
     public List<User> expenses_account_load(Boolean READ) {
         System.out.println("test");
         List<User> exp_user_gen = new ArrayList<User>();
@@ -294,6 +315,7 @@ public class activity_home_expenses extends AppCompatActivity implements View.On
         return exp_user_gen;
     }
 
+
     public void load_spinner() {
         List<String> account_values = new ArrayList<String>();
         account_values.add("Accounts");
@@ -304,8 +326,12 @@ public class activity_home_expenses extends AppCompatActivity implements View.On
                 this, android.R.layout.simple_spinner_item, account_values);
 
         account_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        account_spinner.setAdapter(account_adapter);
+        spnAccount.setAdapter(account_adapter);
 
+    }
+
+    public void setIntent(Class param_class) {
+        intent_pass = new Intent(this, param_class);
     }
 
     @Override
@@ -313,53 +339,82 @@ public class activity_home_expenses extends AppCompatActivity implements View.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_home_expenses);
 
-        mContainerView = (LinearLayout) findViewById(R.id.view_expense);
+        nav_expenses = (BottomNavigationView) findViewById(R.id.expense_nav);
+        nav_expenses.setItemIconTintList(null);
+        nav_expenses.setItemTextColor(null);
+
+        nav_expenses.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Intent intent;
+                Class change_activity;
+                switch (item.getItemId()) {
+                    case R.id.expense_home:
+                        change_activity = activity_home.class;
+                        setIntent(change_activity);
+                        intent_pass.putExtra("Home_User", user);
+                        startActivity(intent_pass);
+                        break;
+
+                    case R.id.expenses:
+                        change_activity = activity_home_expenses.class;
+                        setIntent(change_activity);
+                        intent_pass.putExtra("Home_User", user);
+                        startActivity(intent_pass);
+
+                        break;
+
+                    case R.id.expense_account:
+                        change_activity = activity_home_accounts.class;
+                        setIntent(change_activity);
+                        intent_pass.putExtra("Home_User", user);
+                        startActivity(intent_pass);
+
+                        break;
+
+                    case R.id.expense_budget:
+                        change_activity = activity_home_budget.class;
+                        setIntent(change_activity);
+                        intent_pass.putExtra("Home_User", user);
+                        startActivity(intent_pass);
+
+                        break;
+                }
+                return false;
+            }
+        });
+
+        containerView = findViewById(R.id.view_expense);
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        myView = inflater.inflate(R.layout.layout_expenses_create, null);
+        vMyView = inflater.inflate(R.layout.layout_expenses_create, null);
 
         Intent intent = getIntent();
         //assign the returned object to the current user object
         user = (User) intent.getSerializableExtra("Home_User");
 
-        //  Window w = getWindow();
-        //  w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
-
-        expense_background = findViewById(R.id.background);
-        account_spinner = myView.findViewById(R.id.expense_spinner2);
+        bgExpense = findViewById(R.id.background);
+        spnAccount = vMyView.findViewById(R.id.expense_spinner2);
 
         RecyclerView recyclerView = findViewById(R.id.rv_expense);
-        mlist = new ArrayList<>();
+        expensesList = new ArrayList<>();
         for (int i = 0; i < user.expenses.size(); i++) {
-            mlist.add(user.expenses.get(i));
+            expensesList.add(user.expenses.get(i));
         }
-        adapter = new Expense_Adapter(this, mlist, user);
+        adapter = new Expense_Adapter(this, expensesList, user);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        button_add = (Button) myView.findViewById(R.id.expense_add);
-        button_add.setOnClickListener(this);
+        btnAdd = vMyView.findViewById(R.id.expense_add);
+        btnAdd.setOnClickListener(this);
 
-        button_add_date = (Button) myView.findViewById(R.id.button_add_date);
-        button_add_date.setOnClickListener(this);
+        btnExpenseCreate = findViewById(R.id.expenses_create);
+        btnExpenseCreate.setOnClickListener(this);
 
-        button_cancel = (Button) myView.findViewById(R.id.expense_cancel);
-        button_cancel.setOnClickListener(this);
+        btnAddDate = vMyView.findViewById(R.id.button_add_date);
+        btnAddDate.setOnClickListener(this);
 
-        expenses_home = (ImageButton) findViewById(R.id.home);
-        expenses_home.setOnClickListener(this);
-
-        expenses = (ImageButton) findViewById(R.id.home_expenses);
-        expenses.setOnClickListener(this);
-
-        expenses_accounts = (ImageButton) findViewById(R.id.home_accounts);
-        expenses_accounts.setOnClickListener(this);
-
-        expenses_budget = (ImageButton) findViewById(R.id.expenses_budget);
-        expenses_budget.setOnClickListener(this);
-
-        expenses_create = (Button) findViewById(R.id.expenses_create);
-        expenses_create.setOnClickListener(this);
-
+        btnCancel = vMyView.findViewById(R.id.expense_cancel);
+        btnCancel.setOnClickListener(this);
         load_spinner();
 
     }

@@ -1,0 +1,21 @@
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/expense_home"
+        android:icon="@drawable/expense_home"
+        android:title="Home" />
+    <item
+        android:id="@+id/expenses"
+        android:icon="@drawable/expenses_icon_clicked"
+        android:title="Expenses" />
+    <item
+        android:id="@+id/expense_account"
+        android:icon="@drawable/account_icon_not_clicked"
+        android:title="Accounts"
+        app:showAsAction="collapseActionView" />
+    <item
+        android:id="@+id/expense_budget"
+        android:icon="@drawable/budget_icon_not_clicked"
+        android:title="Budget" />
+</menu>

@@ -8,23 +8,35 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.VideoView;
+/**
+ * Followed by a splash screen, this class is the landing screen after the user launches the application. In this screen, the user can choose different methods to get access to the app (sign in, create, guest mode).
+ */
 
 public class activity_intro extends AppCompatActivity  implements View.OnClickListener {
 
-    private Button intro_sign_in;
-    private Button intro_new;
-    private Button intro_guest;
+    /**
+     * btnLoginAccount - the user would click on this button to log into the application with a existing account in the file system
+     * btnCreateAccount - the user would click on this button to create a new account to login with
+     * btnGuestAccount - the user would click on this button in the case they do not create an account, or have a existing one
+     */
+    private Button btnLoginAccount;
+    private Button btnCreateAccount;
+    private Button btnGuestAccount;
 
-    VideoView background_intro_video;
-    private static int time = 2000;
+    /**
+     * vvBackground - a VideoView that will be used as the activity's background
+     */
+    VideoView vvBackground;
 
-    /* implementation for buttons to respond to clicks */
-    /* checks the id, sends the user to the corresponding activity*/
-
+    /**
+     * onClick - listen for button clicks and perform the appropriate function
+     * ID.sign_in - takes the user to the sign in screen
+     * ID.create = takes the user to the account creation screen
+     * ID.guest = takes the user to the home screen
+     */
     @Override
     public void onClick(View view) {
         Intent intent;
-        //Intent intent2;
         switch (view.getId()) {
             case R.id.sign_in:
                 intent = new Intent(this, activity_account_login.class);
@@ -38,9 +50,7 @@ public class activity_intro extends AppCompatActivity  implements View.OnClickLi
                 intent = new Intent(this, activity_home.class);
                 startActivity(intent);
                 break;
-
         }
-        System.out.println("Saturday" + view.getId());
     }
 
     @Override
@@ -48,31 +58,46 @@ public class activity_intro extends AppCompatActivity  implements View.OnClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_intro);
 
-        intro_sign_in = (Button) findViewById(R.id.sign_in);
-        intro_sign_in.setOnClickListener(this);
-
-        intro_new = (Button) findViewById(R.id.create);
-        intro_new.setOnClickListener(this);
-
-        intro_guest = (Button) findViewById(R.id.guest);
-        intro_guest.setOnClickListener(this);
-
-
-
-        /*allows video capability for the background of the intro layout to be displayed with a personalised video
-        the background loops and resumes when the user returns to the activity
+        /**
+         * findViewById - distribute IDs to the corresponding views
          */
 
-        background_intro_video = (VideoView) findViewById(R.id.videoView);
+        btnLoginAccount = findViewById(R.id.sign_in);
+        btnLoginAccount.setOnClickListener(this);
+
+        btnCreateAccount = findViewById(R.id.create);
+        btnCreateAccount.setOnClickListener(this);
+
+        btnGuestAccount = findViewById(R.id.guest);
+        btnGuestAccount.setOnClickListener(this);
+
+        vvBackground = findViewById(R.id.videoView);
+
+        loadBackground();
+
+        /**
+         * Function call (loadBackground) - load the background for this activity
+         */
+    }
+
+    /**
+     * loadBackground - enables video capability for the background of this layout, requires at least one video file in the project's storage
+     * The background loops and resumes when the user returns to the activity.
+     * @param "None"
+     * @return: void
+     */
+    public void loadBackground() {
         Uri uri = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.placeholder_background);
+        vvBackground.setVideoURI(uri);
+        vvBackground.start();
+        vvBackground.requestFocus();
 
-        background_intro_video.setVideoURI(uri);
-        background_intro_video.start();
-        background_intro_video.requestFocus();
-
-        background_intro_video.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+        vvBackground.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
             public void onPrepared(MediaPlayer mediaPlayer) {
+                /**
+                 * setLooping - let the background loop continuously to prevent noticeable stops while the video is streaming
+                 */
                 mediaPlayer.setLooping(true);
             }
         });
@@ -81,7 +106,7 @@ public class activity_intro extends AppCompatActivity  implements View.OnClickLi
     @Override
     protected void onResume() {
         super.onResume();
-        background_intro_video.start();
+        vvBackground.start();
 
     }
 }
